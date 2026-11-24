@@ -1,0 +1,2365 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Galo BI 2027 • Inteligência Executiva & Mercado SAF</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Oswald:wght@500;600;700&family=Rajdhani:wght@600;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        display: ['Oswald', 'sans-serif'],
+                        fut: ['Rajdhani', 'sans-serif'],
+                    },
+                    colors: {
+                        galo: {
+                            bg: '#09090B',
+                            panel: '#121215',
+                            card: '#19191E',
+                            border: '#2A2A32',
+                            gold: '#EAB308',
+                            goldBright: '#FACC15',
+                            silver: '#CBD5E1'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background-color: #09090B;
+            color: #F8FAFC;
+            overflow-x: hidden;
+        }
+        ::-webkit-scrollbar { width: 6px; height: 6px; }
+        ::-webkit-scrollbar-track { background: #121215; }
+        ::-webkit-scrollbar-thumb { background: #34343E; border-radius: 3px; }
+        ::-webkit-scrollbar-thumb:hover { background: #EAB308; }
+
+        /* Alvinegro Vertical Stripes Motif */
+        .alvinegro-header {
+            background-image: repeating-linear-gradient(
+                90deg,
+                rgba(255, 255, 255, 0.035) 0px,
+                rgba(255, 255, 255, 0.035) 18px,
+                rgba(0, 0, 0, 0.45) 18px,
+                rgba(0, 0, 0, 0.45) 36px
+            );
+        }
+        .alvinegro-stripe-bar {
+            background-image: repeating-linear-gradient(
+                90deg,
+                #FFFFFF 0px,
+                #FFFFFF 14px,
+                #09090B 14px,
+                #09090B 28px
+            );
+        }
+
+        /* Arena MRV Pitch with Alvinegro Mowing Stripes */
+        .eafc-pitch {
+            background:
+                radial-gradient(ellipse at 50% 35%, rgba(255, 255, 255, 0.07) 0%, transparent 65%),
+                repeating-linear-gradient(
+                    90deg,
+                    #144224,
+                    #144224 44px,
+                    #184E2B 44px,
+                    #184E2B 88px
+                );
+            border: 2px solid rgba(255, 255, 255, 0.28);
+            box-shadow: inset 0 0 60px rgba(0, 0, 0, 0.75), 0 15px 35px rgba(0,0,0,0.65);
+        }
+
+        /* EA FC Ultimate Team Card with Alvinegro Subtle Motif */
+        .fut-card {
+            background:
+                repeating-linear-gradient(90deg, rgba(255,255,255,0.03) 0px, rgba(255,255,255,0.03) 8px, transparent 8px, transparent 16px),
+                linear-gradient(155deg, #27272A 0%, #121215 58%, #09090B 100%);
+            border: 1.5px solid #D4AF37;
+            clip-path: polygon(10% 0%, 90% 0%, 100% 12%, 100% 86%, 50% 100%, 0% 86%, 0% 12%);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.85);
+            transition: transform 0.18s cubic-bezier(0.34, 1.56, 0.64, 1), border-color 0.2s;
+        }
+        .fut-card:hover, .fut-card:focus-visible {
+            transform: scale(1.12) translateY(-4px);
+            border-color: #FACC15;
+            outline: none;
+            z-index: 30;
+        }
+        .fut-card-new {
+            background:
+                repeating-linear-gradient(90deg, rgba(250,204,21,0.06) 0px, rgba(250,204,21,0.06) 8px, transparent 8px, transparent 16px),
+                linear-gradient(155deg, #423306 0%, #1C1604 55%, #09090B 100%);
+            border: 1.5px solid #FACC15;
+            box-shadow: 0 0 18px rgba(234, 179, 8, 0.45);
+        }
+        .fut-card-star {
+            background:
+                repeating-linear-gradient(90deg, rgba(232,121,249,0.07) 0px, rgba(232,121,249,0.07) 8px, transparent 8px, transparent 16px),
+                linear-gradient(155deg, #4A1575 0%, #240B47 52%, #09090B 100%);
+            border: 1.5px solid #E879F9;
+            box-shadow: 0 0 22px rgba(217, 70, 239, 0.55);
+        }
+
+        /* Print One-Pager for Executive Board */
+        @media print {
+            body { background: #FFFFFF !important; color: #000000 !important; }
+            .no-print { display: none !important; }
+            #printReportContainer { display: block !important; }
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col">
+
+    <!-- TOP ALVINEGRO ACCENT BAR -->
+    <div class="h-1.5 w-full alvinegro-stripe-bar no-print"></div>
+
+    <!-- EXECUTIVE HEADER -->
+    <header class="bg-galo-panel alvinegro-header border-b border-galo-border px-4 py-3 sticky top-0 z-40 no-print">
+        <div class="max-w-[1640px] mx-auto flex flex-wrap items-center justify-between gap-3">
+            
+            <!-- Official Crest + Title -->
+            <div class="flex items-center gap-3">
+                <div class="w-10 h-11 flex items-center justify-center shrink-0">
+                    <img src="https://ssl.gstatic.com/onebox/media/sports/logos/optimized/q9fhEsgpuyRq58OgmSndcQ_500x500.png" 
+                         alt="Escudo Oficial Clube Atlético Mineiro" 
+                         class="w-full h-full object-contain drop-shadow-[0_2px_6px_rgba(255,255,255,0.25)]"
+                         onerror="this.onerror=null; this.src='https://tmssl.akamaized.net/images/wappen/head/330.png';">
+                </div>
+                <div>
+                    <div class="flex flex-wrap items-center gap-2">
+                        <span class="bg-white text-black text-[11px] font-extrabold px-2 py-0.5 rounded uppercase tracking-wider">SAF BI • DIRETORIA 2027</span>
+                        <span id="photoSyncBadge" class="text-xs text-slate-300 font-medium flex items-center gap-1">
+                            <span class="w-2 h-2 rounded-full bg-amber-400 inline-block"></span> Verificando retratos...
+                        </span>
+                    </div>
+                    <h1 class="font-display text-xl font-bold tracking-wide text-white uppercase leading-tight">
+                        CLUBE ATLÉTICO MINEIRO <span class="text-galo-gold">• PLANEJAMENTO EXECUTIVO</span>
+                    </h1>
+                </div>
+            </div>
+
+            <!-- Live Financial KPIs: Cash, Payroll/Amortization, Future Commercial & Fair Play -->
+            <div class="flex flex-wrap items-center gap-2.5">
+                <div class="flex flex-wrap items-center gap-3 bg-black/90 border border-galo-border rounded-xl px-3.5 py-2">
+                    <div>
+                        <span class="text-[11px] uppercase text-slate-300 block font-semibold">Caixa Base 27</span>
+                        <div class="flex items-center text-xs font-bold text-white">
+                            <span>R$</span>
+                            <input type="number" id="baseBudgetInput" aria-label="Orçamento base em milhões" value="55" min="0" max="500" class="w-11 bg-transparent border-b border-galo-gold text-galo-gold text-right font-bold mx-1 focus:outline-none">
+                            <span>M</span>
+                        </div>
+                    </div>
+                    <div class="h-7 w-px bg-galo-border"></div>
+                    <div>
+                        <span class="text-[11px] uppercase text-slate-300 block font-semibold">Saldo Caixa</span>
+                        <span id="kpiBalance" class="font-display text-base font-bold text-galo-gold">R$ 55,0M</span>
+                    </div>
+                    <div class="h-7 w-px bg-galo-border"></div>
+                    <div>
+                        <span class="text-[11px] uppercase text-slate-300 block font-semibold">Folha + Amort./Ano</span>
+                        <span id="kpiPayroll" class="font-display text-sm font-bold text-white">R$ 0,0M</span>
+                    </div>
+                    <div class="h-7 w-px bg-galo-border"></div>
+                    <div>
+                        <span class="text-[11px] uppercase text-slate-300 block font-semibold">Mkt Recorrente/Ano</span>
+                        <span id="kpiFutureMkt" class="font-display text-sm font-bold text-emerald-400">+R$ 0,0M</span>
+                    </div>
+                    <div class="h-7 w-px bg-galo-border"></div>
+                    <div>
+                        <span class="text-[11px] uppercase text-slate-300 block font-semibold">Fair Play CBF (≤70%)</span>
+                        <span id="kpiFairPlay" class="font-display text-sm font-bold text-emerald-400">60,0% OK</span>
+                    </div>
+                </div>
+
+                <!-- Action Buttons: Scenarios, CSV Import, Print Report -->
+                <div class="flex items-center gap-1.5">
+                    <button onclick="openScenariosModal()" class="text-xs font-bold text-white bg-galo-card hover:bg-neutral-800 border border-galo-gold/50 px-3 py-2 rounded-lg transition flex items-center gap-1.5">
+                        <svg class="w-3.5 h-3.5 text-galo-gold" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+                        Cenários A/B/C
+                    </button>
+                    <button onclick="openCsvModal()" class="text-xs font-semibold text-slate-200 bg-galo-card hover:bg-neutral-800 border border-galo-border px-2.5 py-2 rounded-lg transition" title="Importar CSV de Estatísticas Reais ou Exportar JSON/CSV">
+                        CSV / Dados
+                    </button>
+                    <button onclick="printExecutiveReport()" class="text-xs font-semibold text-slate-200 bg-galo-card hover:bg-neutral-800 border border-galo-border px-2.5 py-2 rounded-lg transition" title="Gerar Relatório de 1 Página para o Conselho">
+                        Relatório
+                    </button>
+                    <button onclick="resetAll()" class="text-xs font-semibold text-slate-300 hover:text-white bg-galo-card hover:bg-neutral-800 border border-galo-border px-2.5 py-2 rounded-lg transition" title="Reiniciar Planejamento">
+                        Resetar
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- STRUCTURED CLUB_FACTS BAR (WITH EXPLICIT SOURCE & SIMULATION GOVERNANCE) -->
+    <section class="bg-[#0E0E11] border-b border-galo-border px-4 py-2 no-print">
+        <div id="clubFactsBar" class="max-w-[1640px] mx-auto grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-2 text-xs">
+            <!-- Populated from CLUB_FACTS -->
+        </div>
+    </section>
+
+    <!-- TOP WORKSPACE MODE SWITCHER + POSITION SLICERS -->
+    <div class="max-w-[1640px] w-full mx-auto px-4 pt-3 flex flex-wrap items-center justify-between gap-3 no-print">
+        <div class="flex items-center bg-galo-panel border border-galo-border rounded-xl p-1 gap-1">
+            <button id="modeSquadBtn" onclick="switchWorkspaceMode('squad')" class="px-3.5 py-1.5 rounded-lg font-display text-xs uppercase tracking-wider font-bold bg-white text-black transition">
+                Mercado & Prancheta Tática
+            </button>
+            <button id="modeBiBtn" onclick="switchWorkspaceMode('bi')" class="px-3.5 py-1.5 rounded-lg font-display text-xs uppercase tracking-wider font-bold text-slate-300 hover:text-white transition flex items-center gap-1.5">
+                <span>Inteligência BI, Matriz & DNA Score</span>
+                <span class="bg-galo-gold text-black text-[10px] font-extrabold px-1.5 rounded">ANALYTICS</span>
+            </button>
+        </div>
+
+        <!-- Quick Position Slicers -->
+        <div class="flex items-center bg-galo-panel border border-galo-border rounded-xl p-1 text-xs" id="posFilterGroup">
+            <button data-pos="ALL" class="pos-btn active px-2.5 py-1 rounded-lg font-bold bg-galo-gold text-black transition">Todos</button>
+            <button data-pos="CA" class="pos-btn px-2.5 py-1 rounded-lg font-semibold text-slate-300 hover:text-white transition">CA</button>
+            <button data-pos="VOL" class="pos-btn px-2.5 py-1 rounded-lg font-semibold text-slate-300 hover:text-white transition">2º VOL</button>
+            <button data-pos="LD" class="pos-btn px-2.5 py-1 rounded-lg font-semibold text-slate-300 hover:text-white transition">LD</button>
+            <button data-pos="ZAG" class="pos-btn px-2.5 py-1 rounded-lg font-semibold text-slate-300 hover:text-white transition">ZAG</button>
+            <button data-pos="MEI" class="pos-btn px-2.5 py-1 rounded-lg font-semibold text-slate-300 hover:text-white transition">MEI/ATA</button>
+        </div>
+    </div>
+
+    <!-- ===================================================================== -->
+    <!-- WORKSPACE VIEW 1: SQUAD MANAGEMENT & EA FC PITCH                      -->
+    <!-- ===================================================================== -->
+    <main id="workspaceSquad" class="flex-1 max-w-[1640px] w-full mx-auto p-4 grid grid-cols-1 lg:grid-cols-12 gap-4 items-start no-print">
+
+        <!-- LEFT COLUMN (5 COLS): AUTOMATIC SHORTAGES, WORLD ELITE & OUTGOING -->
+        <section class="lg:col-span-5 bg-galo-panel border border-galo-border rounded-xl overflow-hidden flex flex-col shadow-xl">
+            
+            <!-- 3-Tab Navigation (Clean SVG Icons, No Emojis) -->
+            <div class="grid grid-cols-3 bg-black border-b border-galo-border p-1.5 gap-1">
+                <button id="tabMarketBtn" onclick="switchLeftTab('market')" class="py-2 px-2 rounded-lg font-display text-xs uppercase tracking-wider font-bold bg-galo-gold text-black flex items-center justify-center gap-1.5 transition">
+                    <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4"/></svg>
+                    <span>Alvos SAF</span>
+                    <span id="badgeSigned" class="bg-black text-galo-gold text-[10px] px-1.5 rounded-full">0</span>
+                </button>
+                <button id="tabWorldBtn" onclick="switchLeftTab('world')" class="py-2 px-2 rounded-lg font-display text-xs uppercase tracking-wider font-bold text-slate-300 hover:text-white flex items-center justify-center gap-1.5 transition">
+                    <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/></svg>
+                    <span>Elite Mundial</span>
+                </button>
+                <button id="tabOutgoingBtn" onclick="switchLeftTab('outgoing')" class="py-2 px-2 rounded-lg font-display text-xs uppercase tracking-wider font-bold text-slate-300 hover:text-white flex items-center justify-center gap-1.5 transition">
+                    <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24"><path d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"/></svg>
+                    <span>Barca / Saídas</span>
+                    <span id="badgeSold" class="bg-neutral-800 text-slate-200 text-[10px] px-1.5 rounded-full">0/12</span>
+                </button>
+            </div>
+
+            <!-- DYNAMIC SHORTAGE BANNER (COMPUTED FROM ACTIVE SQUAD AFTER SALES) -->
+            <div id="dynamicShortageBar" class="bg-black/80 border-b border-galo-border px-3 py-2 flex flex-wrap items-center gap-1.5 text-[11px]">
+                <!-- Rendered dynamically -->
+            </div>
+
+            <!-- TAB 1: REALISTIC MARKET TARGETS -->
+            <div id="viewMarket" class="p-3 space-y-2.5 max-h-[680px] overflow-y-auto">
+                <div class="flex items-center justify-between px-1 pb-1 border-b border-galo-border/60">
+                    <span class="text-xs text-slate-300">Ordenados por <strong class="text-galo-gold">DNA Galo Score</strong> (ajustável na aba BI)</span>
+                    <button onclick="openAddRumorModal()" class="text-xs font-bold text-galo-gold hover:underline">+ Importar Jogador</button>
+                </div>
+                <div id="marketCardsList" class="space-y-2"></div>
+            </div>
+
+            <!-- TAB 2: WORLD ELITE SCOUT & COMMERCIAL PAYBACK -->
+            <div id="viewWorld" class="hidden p-3 space-y-2.5 max-h-[680px] overflow-y-auto">
+                <div class="bg-gradient-to-r from-purple-950/70 via-black to-galo-card border border-purple-500/40 rounded-lg p-2.5 text-xs">
+                    <div class="flex items-center justify-between mb-1">
+                        <span class="font-bold text-purple-300 uppercase tracking-wide">Payback Comercial (Camisas Nike + Sócios)</span>
+                        <span class="text-[11px] bg-purple-600/30 text-purple-200 px-1.5 py-0.5 rounded font-semibold">Receita Futura</span>
+                    </div>
+                    <p class="text-slate-200 leading-snug">
+                        O retorno comercial entra como <strong class="text-emerald-400">receita recorrente anual</strong> (não caixa imediato). Veja o <strong>Payback em meses</strong> de cada operação.
+                    </p>
+                </div>
+
+                <div class="flex gap-1.5">
+                    <input type="text" id="tmGlobalSearchInput" oninput="renderWorldScout()" placeholder="Filtrar ou digitar jogador da elite mundial..." class="flex-1 bg-black border border-galo-border rounded-lg px-3 py-2 text-xs text-white focus:border-galo-gold focus:outline-none">
+                    <button onclick="quickAddFromSearch()" class="bg-galo-gold hover:bg-galo-goldBright text-black font-bold text-xs px-3 py-2 rounded-lg shrink-0 transition">
+                        + Adicionar
+                    </button>
+                </div>
+
+                <div id="worldCardsList" class="space-y-2"></div>
+            </div>
+
+            <!-- TAB 3: OUTGOING / BARCA 2027 -->
+            <div id="viewOutgoing" class="hidden p-3 space-y-2.5 max-h-[680px] overflow-y-auto">
+                <!-- Special Vitão (Vitor Fernandes - Base Galo) Card -->
+                <div class="bg-gradient-to-r from-purple-950/60 to-galo-card border border-purple-500/40 rounded-lg p-3 flex items-center justify-between gap-2.5">
+                    <div class="flex items-center gap-2.5 min-w-0">
+                        <div id="vitaoPhotoWrap" class="w-11 h-11 rounded-full overflow-hidden border border-purple-400 bg-black shrink-0"></div>
+                        <div class="min-w-0">
+                            <div class="flex flex-wrap items-center gap-1.5">
+                                <span class="text-xs font-bold text-white">Vitão (Vitor Fernandes • 20a)</span>
+                                <span class="text-[11px] bg-purple-500/30 text-purple-200 px-1.5 rounded font-semibold">Base • Premier/La Liga</span>
+                            </div>
+                            <p class="text-xs text-slate-300 truncate">Valor: <strong class="text-emerald-400">+R$ 45,0M</strong> • Folha: R$ 180k/mês</p>
+                        </div>
+                    </div>
+                    <div class="flex flex-col sm:flex-row items-end sm:items-center gap-1.5 shrink-0">
+                        <button onclick="openPlayerDetails('ret_5')" class="px-2.5 py-1.5 rounded-lg text-xs font-bold bg-neutral-800 hover:bg-neutral-700 text-galo-gold border border-galo-border transition">
+                            Detalhes
+                        </button>
+                        <button id="vitaoActionBtn" onclick="toggleVitaoSale()" class="px-2.5 py-1.5 rounded-lg text-xs font-bold bg-purple-600 hover:bg-purple-500 text-white transition">
+                            Vender (+45M)
+                        </button>
+                    </div>
+                </div>
+
+                <div class="flex items-center justify-between px-1 pt-1">
+                    <span class="text-xs text-slate-300">Ordenado por <strong>Rejeição da Torcida</strong></span>
+                    <button onclick="executeAllBarca()" class="text-xs font-bold text-red-400 hover:text-red-300">Executar Toda Barca</button>
+                </div>
+
+                <div id="outgoingCardsList" class="space-y-2"></div>
+            </div>
+        </section>
+
+        <!-- RIGHT COLUMN (7 COLS): EA SPORTS FC TACTICAL PITCH -->
+        <section class="lg:col-span-7 bg-galo-panel border border-galo-border rounded-xl p-4 shadow-xl">
+            
+            <!-- Squad Coesão & Rating Header -->
+            <div class="flex flex-wrap items-center justify-between gap-3 mb-3 pb-3 border-b border-galo-border">
+                <div class="flex items-center gap-3.5">
+                    <div class="bg-white text-black px-3 py-1 rounded-lg text-center shadow border border-neutral-300">
+                        <span class="text-[10px] font-extrabold uppercase block leading-none">OVR XI</span>
+                        <span id="eafcOvr" class="font-fut text-2xl font-bold leading-tight">80</span>
+                    </div>
+                    <div>
+                        <h2 class="font-display text-lg font-bold uppercase tracking-wide text-white flex items-center gap-2">
+                            Escalação Titular 2027 <span class="text-xs font-sans font-normal text-slate-300">(Clique ou pressione Enter na carta)</span>
+                        </h2>
+                        <div class="flex flex-wrap items-center gap-3 text-xs mt-0.5">
+                            <span class="text-amber-400 font-bold">DNA Galo XI: <strong id="eafcDna">86</strong></span>
+                            <span class="text-emerald-400 font-bold" title="Calculado por aderência posicional (slot vs posição natural) e entrosamento de remanescentes">Coesão Tática: <strong id="eafcCohesion">100%</strong></span>
+                            <span class="text-galo-gold font-bold">Reforços XI: <strong id="eafcNewCount">0/11</strong></span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Formation & Auto-Best XI -->
+                <div class="flex items-center gap-2">
+                    <select id="formationSelect" aria-label="Esquema Tático" onchange="changeFormation()" class="bg-black border border-galo-border text-xs text-galo-gold font-bold rounded-lg px-3 py-2 focus:outline-none focus:border-galo-gold">
+                        <option value="4-2-3-1">4-2-3-1 (Padrão)</option>
+                        <option value="4-4-2">4-4-2 (Losango)</option>
+                        <option value="3-5-2">3-5-2 (3 Zagueiros)</option>
+                    </select>
+                    <button onclick="autoBestXI()" class="bg-galo-card hover:bg-neutral-800 border border-galo-gold/50 text-galo-gold text-xs font-bold px-3 py-2 rounded-lg transition">
+                        Melhor XI (DNA)
+                    </button>
+                </div>
+            </div>
+
+            <!-- Responsive Pitch Container -->
+            <div class="eafc-pitch relative w-full h-[500px] sm:h-[600px] rounded-xl overflow-hidden select-none">
+                <div class="absolute inset-3 sm:inset-4 border border-white/25 pointer-events-none"></div>
+                <div class="absolute inset-x-3 sm:inset-x-4 top-1/2 border-t border-white/25 pointer-events-none"></div>
+                <div class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-24 sm:w-28 h-24 sm:h-28 rounded-full border border-white/25 pointer-events-none"></div>
+                <div class="absolute top-3 sm:top-4 left-1/2 -translate-x-1/2 w-44 sm:w-52 h-16 sm:h-20 border-b border-x border-white/25 pointer-events-none"></div>
+                <div class="absolute bottom-3 sm:bottom-4 left-1/2 -translate-x-1/2 w-44 sm:w-52 h-16 sm:h-20 border-t border-x border-white/25 pointer-events-none"></div>
+
+                <div class="absolute inset-0 flex items-center justify-center pointer-events-none opacity-10">
+                    <span class="font-display text-5xl sm:text-7xl font-bold tracking-widest text-white">ATLÉTICO</span>
+                </div>
+
+                <div id="eafcCardsContainer" class="relative w-full h-full"></div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- ===================================================================== -->
+    <!-- WORKSPACE VIEW 2: EXECUTIVE BI ANALYTICS, MATRIZ DA BARCA & DNA SCORE -->
+    <!-- ===================================================================== -->
+    <section id="workspaceBi" class="hidden flex-1 max-w-[1640px] w-full mx-auto p-4 space-y-4 no-print">
+        
+        <!-- ROW 1: MATRIZ DE DECISÃO DA BARCA (SCATTER) + DNA GALO SCORE COMPOSER -->
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-4">
+            
+            <!-- Matriz de Decisão da Barca (Desempenho x Rejeição da Torcida, Bolha = Valor de Venda) -->
+            <div class="lg:col-span-7 bg-galo-panel border border-galo-border rounded-xl p-4 shadow-xl">
+                <div class="flex flex-wrap items-center justify-between gap-2 mb-3">
+                    <div>
+                        <h2 class="font-display text-base font-bold uppercase text-white">Matriz de Decisão do Elenco (Desempenho × Rejeição da Torcida)</h2>
+                        <p class="text-xs text-slate-300">Tamanho da bolha = Valor de Mercado (R$ M) • Clique na bolha para abrir detalhes ou negociar</p>
+                    </div>
+                    <div class="flex flex-wrap gap-2 text-[11px] font-semibold">
+                        <span class="px-2 py-0.5 rounded bg-red-500/20 text-red-300 border border-red-500/30">Vender Agora</span>
+                        <span class="px-2 py-0.5 rounded bg-amber-500/20 text-amber-300 border border-amber-500/30">Emprestar</span>
+                        <span class="px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-300 border border-emerald-500/30">Manter / Renovar</span>
+                    </div>
+                </div>
+                <div id="barcaMatrixChart" class="w-full overflow-x-auto"></div>
+            </div>
+
+            <!-- DNA Galo Score Transparente (Sliders de Critério Executivo) -->
+            <div class="lg:col-span-5 bg-galo-panel border border-galo-border rounded-xl p-4 shadow-xl flex flex-col justify-between">
+                <div>
+                    <div class="flex items-center justify-between mb-2">
+                        <h2 class="font-display text-base font-bold uppercase text-galo-gold">DNA Galo Score • Ponderação de Critérios</h2>
+                        <button onclick="resetDnaWeights()" class="text-xs text-slate-300 hover:text-white underline">Padrão</button>
+                    </div>
+                    <p class="text-xs text-slate-300 mb-3">Ajuste os pesos para defender cada contratação no Conselho. Recalcula o ranking de alvos em tempo real.</p>
+                    
+                    <div class="space-y-2.5 text-xs" id="dnaSlidersContainer">
+                        <div>
+                            <div class="flex justify-between mb-1"><span class="font-semibold text-white">Intensidade & Imposição Física</span><span id="wValInt" class="font-bold text-galo-gold">30%</span></div>
+                            <input type="range" id="weightIntensity" min="0" max="100" value="30" oninput="onDnaWeightChange()" class="w-full accent-yellow-500">
+                        </div>
+                        <div>
+                            <div class="flex justify-between mb-1"><span class="font-semibold text-white">Identificação & Espírito Competitivo</span><span id="wValId" class="font-bold text-galo-gold">25%</span></div>
+                            <input type="range" id="weightIdentity" min="0" max="100" value="25" oninput="onDnaWeightChange()" class="w-full accent-yellow-500">
+                        </div>
+                        <div>
+                            <div class="flex justify-between mb-1"><span class="font-semibold text-white">Poder de Decisão (Finais / Mata-mata)</span><span id="wValDec" class="font-bold text-galo-gold">20%</span></div>
+                            <input type="range" id="weightClutch" min="0" max="100" value="20" oninput="onDnaWeightChange()" class="w-full accent-yellow-500">
+                        </div>
+                        <div>
+                            <div class="flex justify-between mb-1"><span class="font-semibold text-white">Disponibilidade Física (Histórico Lesões)</span><span id="wValDisp" class="font-bold text-galo-gold">15%</span></div>
+                            <input type="range" id="weightAvailability" min="0" max="100" value="15" oninput="onDnaWeightChange()" class="w-full accent-yellow-500">
+                        </div>
+                        <div>
+                            <div class="flex justify-between mb-1"><span class="font-semibold text-white">Custo-Benefício SAF (OVR vs Custo Total)</span><span id="wValCost" class="font-bold text-galo-gold">10%</span></div>
+                            <input type="range" id="weightValue" min="0" max="100" value="10" oninput="onDnaWeightChange()" class="w-full accent-yellow-500">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mt-3 pt-3 border-t border-galo-border">
+                    <span class="text-[11px] uppercase text-slate-300 font-bold block mb-1.5">Top 3 Alvos Segundo Seus Critérios Atuais:</span>
+                    <div id="topDnaRanking" class="space-y-1.5 text-xs"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ROW 2: CASCATA DE CAIXA + FOLHA/RECEITA + PIRÂMIDE ETÁRIA XI -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <div class="bg-galo-panel border border-galo-border rounded-xl p-4 shadow-xl">
+                <h3 class="font-display text-sm font-bold uppercase text-white mb-1">Cascata de Caixa 2027 (R$ Milhões)</h3>
+                <p class="text-[11px] text-slate-300 mb-3">Orçamento Inicial → Vendas → Compras → Saldo Líquido</p>
+                <div id="waterfallChart"></div>
+            </div>
+
+            <div class="bg-galo-panel border border-galo-border rounded-xl p-4 shadow-xl">
+                <h3 class="font-display text-sm font-bold uppercase text-white mb-1">Medidor Folha + Amortização / Receita</h3>
+                <p class="text-[11px] text-slate-300 mb-3">Teto Fair Play CBF: 70% da Receita Operacional</p>
+                <div id="payrollGaugeChart"></div>
+            </div>
+
+            <div class="bg-galo-panel border border-galo-border rounded-xl p-4 shadow-xl">
+                <h3 class="font-display text-sm font-bold uppercase text-white mb-1">Pirâmide Etária dos 11 Titulares</h3>
+                <p class="text-[11px] text-slate-300 mb-3">Equilíbrio entre Base (≤23), Auge (24-29) e Liderança (30+)</p>
+                <div id="agePyramidChart"></div>
+            </div>
+        </div>
+
+        <!-- ROW 3: SCATTER OVR x CUSTO + PAYBACK DAS LOUCURAS DE MARKETING -->
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-4">
+            <div class="lg:col-span-6 bg-galo-panel border border-galo-border rounded-xl p-4 shadow-xl">
+                <h3 class="font-display text-sm font-bold uppercase text-white mb-1">Custo-Benefício de Mercado (OVR × Custo de Aquisição)</h3>
+                <p class="text-[11px] text-slate-300 mb-3">Canto superior esquerdo = Oportunidades de Ouro (Alto OVR / Baixo Custo)</p>
+                <div id="valueScatterChart"></div>
+            </div>
+
+            <div class="lg:col-span-6 bg-galo-panel border border-galo-border rounded-xl p-4 shadow-xl">
+                <h3 class="font-display text-sm font-bold uppercase text-white mb-1">Payback das "Loucuras de Marketing" (Meses)</h3>
+                <p class="text-[11px] text-slate-300 mb-3">Fórmula: Custo de Aquisição ÷ (Receita Comercial Anual / 12)</p>
+                <div id="paybackChart" class="space-y-2"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===================================================================== -->
+    <!-- MODAL: PLAYER PICKER FOR PITCH SLOT                                   -->
+    <!-- ===================================================================== -->
+    <div id="pickerModal" role="dialog" aria-modal="true" class="fixed inset-0 bg-black/80 backdrop-blur-sm hidden items-center justify-center z-50 p-4 no-print">
+        <div class="bg-galo-panel border border-galo-gold/60 rounded-xl max-w-lg w-full overflow-hidden shadow-2xl">
+            <div class="px-4 py-3 bg-black border-b border-galo-border flex items-center justify-between">
+                <div>
+                    <h3 id="pickerTitle" class="font-display text-base font-bold text-galo-gold uppercase">Selecionar Titular</h3>
+                    <p class="text-xs text-slate-300">Elenco Ativo 2027 (Remanescentes + Reforços)</p>
+                </div>
+                <button onclick="closePickerModal()" aria-label="Fechar modal" class="text-slate-300 hover:text-white text-xl font-bold px-2">&times;</button>
+            </div>
+            <div id="pickerList" class="p-3 max-h-[420px] overflow-y-auto grid grid-cols-1 sm:grid-cols-2 gap-2"></div>
+        </div>
+    </div>
+
+    <!-- ===================================================================== -->
+    <!-- MODAL: ADD CUSTOM PLAYER                                              -->
+    <!-- ===================================================================== -->
+    <div id="addRumorModal" role="dialog" aria-modal="true" class="fixed inset-0 bg-black/80 backdrop-blur-sm hidden items-center justify-center z-50 p-4 no-print">
+        <div class="bg-galo-panel border border-galo-gold/60 rounded-xl max-w-md w-full overflow-hidden shadow-2xl">
+            <div class="px-4 py-3 bg-black border-b border-galo-border flex items-center justify-between">
+                <h3 class="font-display text-base font-bold text-galo-gold uppercase">+ Importar Alvo de Mercado</h3>
+                <button onclick="closeAddRumorModal()" aria-label="Fechar modal" class="text-slate-300 hover:text-white text-xl font-bold px-2">&times;</button>
+            </div>
+            <form onsubmit="handleAddRumor(event)" class="p-4 space-y-3 text-xs">
+                <div>
+                    <label class="block text-slate-200 mb-1 font-semibold">Nome Completo do Jogador</label>
+                    <input type="text" id="rumorName" required placeholder="Ex: Lautaro Martínez, Bruno Guimarães..." class="w-full bg-black border border-galo-border rounded-lg px-3 py-2 text-white focus:border-galo-gold focus:outline-none">
+                </div>
+                <div class="grid grid-cols-3 gap-2">
+                    <div>
+                        <label class="block text-slate-200 mb-1 font-semibold">Posição</label>
+                        <select id="rumorPos" class="w-full bg-black border border-galo-border rounded-lg px-2 py-2 text-white">
+                            <option value="CA">CA</option>
+                            <option value="VOL">VOL</option>
+                            <option value="LD">LD</option>
+                            <option value="ZAG">ZAG</option>
+                            <option value="MEI">MEI</option>
+                            <option value="LE">LE</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-slate-200 mb-1 font-semibold">Idade</label>
+                        <input type="number" id="rumorAge" value="28" min="17" max="42" required class="w-full bg-black border border-galo-border rounded-lg px-2.5 py-2 text-white">
+                    </div>
+                    <div>
+                        <label class="block text-slate-200 mb-1 font-semibold">Custo (R$ M)</label>
+                        <input type="number" id="rumorCost" value="30" min="0" max="500" step="1" required class="w-full bg-black border border-galo-border rounded-lg px-2.5 py-2 text-white">
+                    </div>
+                </div>
+                <div class="grid grid-cols-3 gap-2">
+                    <div>
+                        <label class="block text-slate-200 mb-1 font-semibold">Salário (R$ k/mês)</label>
+                        <input type="number" id="rumorSalary" value="950" min="50" max="6000" step="50" required class="w-full bg-black border border-galo-border rounded-lg px-2.5 py-2 text-white">
+                    </div>
+                    <div>
+                        <label class="block text-slate-200 mb-1 font-semibold">Contrato (Anos)</label>
+                        <input type="number" id="rumorYears" value="3" min="1" max="5" required class="w-full bg-black border border-galo-border rounded-lg px-2.5 py-2 text-white">
+                    </div>
+                    <div>
+                        <label class="block text-slate-200 mb-1 font-semibold">Overall (72-94)</label>
+                        <input type="number" id="rumorOvr" value="84" min="72" max="94" required class="w-full bg-black border border-galo-border rounded-lg px-2.5 py-2 text-white">
+                    </div>
+                </div>
+                <div>
+                    <label class="block text-slate-200 mb-1 font-semibold">Tipo de Operação</label>
+                    <select id="rumorContract" class="w-full bg-black border border-galo-border rounded-lg px-2.5 py-2 text-white">
+                        <option value="Livre / Pré-Contrato">Livre / Pré-Contrato</option>
+                        <option value="Compra (SAF)">Compra (Mercado SAF)</option>
+                        <option value="Loucura Mundial">Loucura Mundial (+Receita Camisas)</option>
+                    </select>
+                </div>
+                <div>
+                    <label class="block text-slate-200 mb-1 font-semibold">Parecer Técnico</label>
+                    <input type="text" id="rumorNote" placeholder="Resumo técnico e perfil competitivo." class="w-full bg-black border border-galo-border rounded-lg px-3 py-2 text-white">
+                </div>
+                <div class="pt-2 flex justify-end gap-2">
+                    <button type="button" onclick="closeAddRumorModal()" class="px-4 py-2 rounded-lg bg-neutral-800 text-slate-200">Cancelar</button>
+                    <button type="submit" class="px-4 py-2 rounded-lg bg-galo-gold text-black font-bold">Adicionar ao Radar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- ===================================================================== -->
+    <!-- MODAL: PLAYER DETAILS & STATS (HONESTLY LABELED SIMULATED / CSV)      -->
+    <!-- ===================================================================== -->
+    <div id="detailsModal" role="dialog" aria-modal="true" class="fixed inset-0 bg-black/85 backdrop-blur-sm hidden items-center justify-center z-50 p-4 no-print">
+        <div class="bg-galo-panel border border-galo-gold/60 rounded-2xl max-w-xl w-full overflow-hidden shadow-2xl">
+            <div class="px-5 py-4 bg-gradient-to-r from-black via-[#18181B] to-black border-b border-galo-border flex items-center justify-between gap-3">
+                <div class="flex items-center gap-3.5 min-w-0">
+                    <div id="detPhotoWrap" class="w-16 h-16 rounded-full overflow-hidden border-2 border-galo-gold bg-neutral-900 shrink-0 shadow-lg"></div>
+                    <div class="min-w-0">
+                        <div class="flex flex-wrap items-center gap-2">
+                            <span id="detPosBadge" class="px-2 py-0.5 rounded bg-galo-gold text-black font-extrabold text-xs">ZAG</span>
+                            <h3 id="detName" class="font-display text-xl font-bold text-white uppercase truncate">Jogador</h3>
+                            <span id="detDataSourceBadge" class="text-[10px] px-2 py-0.5 rounded bg-amber-500/20 text-amber-300 border border-amber-500/40 font-bold">DADOS SIMULADOS</span>
+                        </div>
+                        <p id="detSub" class="text-xs text-slate-300 mt-0.5 truncate">Clube • Idade</p>
+                    </div>
+                </div>
+                <div class="flex items-center gap-3 shrink-0">
+                    <div class="text-center bg-black border border-galo-gold/40 px-2.5 py-1 rounded-lg">
+                        <span class="text-[10px] text-slate-300 uppercase block">OVR</span>
+                        <span id="detOvr" class="font-fut text-xl font-bold text-galo-gold leading-none">82</span>
+                    </div>
+                    <button onclick="closeDetailsModal()" aria-label="Fechar modal" class="text-slate-300 hover:text-white text-2xl font-bold px-1.5">&times;</button>
+                </div>
+            </div>
+
+            <div class="p-5 space-y-4 max-h-[75vh] overflow-y-auto text-xs">
+                <div class="bg-black/70 border border-galo-border rounded-xl p-3 space-y-2">
+                    <p id="detNote" class="text-slate-200 leading-relaxed"></p>
+                    <div class="flex flex-wrap items-center gap-2 pt-1">
+                        <span class="px-2.5 py-1 rounded-lg bg-amber-500/15 border border-amber-500/40 text-amber-300 font-bold">DNA Galo: <strong id="detDnaScore">90</strong></span>
+                        <span class="px-2.5 py-1 rounded-lg bg-neutral-800 border border-galo-border text-slate-200 font-semibold">Salário: <strong id="detSalary">R$ 0k/mês</strong></span>
+                        <span class="px-2.5 py-1 rounded-lg bg-neutral-800 border border-galo-border text-slate-200 font-semibold">Contrato: <strong id="detContractEnd">Dez/2028</strong></span>
+                        <span id="detRejBadge" class="px-2.5 py-1 rounded-lg bg-red-500/15 border border-red-500/40 text-red-300 font-semibold">Rejeição Torcida: <strong id="detRej">15%</strong></span>
+                    </div>
+                </div>
+
+                <div>
+                    <div class="flex items-center justify-between mb-2">
+                        <h4 id="detStatsHeading" class="font-display text-xs uppercase tracking-wider text-galo-gold font-bold">Projeção Estatística 2026 (Modelo Simulado)</h4>
+                        <span class="text-[11px] text-slate-400">Importe um CSV real na aba CSV / Dados</span>
+                    </div>
+                    <div id="detSeasonGrid" class="grid grid-cols-3 sm:grid-cols-6 gap-2"></div>
+                </div>
+
+                <div>
+                    <h4 class="font-display text-xs uppercase tracking-wider text-galo-gold font-bold mb-2">Amostra de Rendimento (Últimos 5 Jogos)</h4>
+                    <div id="detRecentForm" class="grid grid-cols-5 gap-2"></div>
+                </div>
+
+                <div>
+                    <h4 class="font-display text-xs uppercase tracking-wider text-galo-gold font-bold mb-2">Histórico Anual (2024 – 2026)</h4>
+                    <div class="bg-black/60 border border-galo-border rounded-xl overflow-hidden">
+                        <table class="w-full text-left border-collapse">
+                            <thead>
+                                <tr class="bg-neutral-900/90 text-[11px] uppercase text-slate-300 border-b border-galo-border">
+                                    <th class="py-2 px-3">Ano</th>
+                                    <th class="py-2 px-3">Clube</th>
+                                    <th class="py-2 px-2 text-center">Jogos</th>
+                                    <th class="py-2 px-2 text-center">Gols</th>
+                                    <th class="py-2 px-2 text-center">Assist.</th>
+                                    <th class="py-2 px-3 text-right">Média</th>
+                                </tr>
+                            </thead>
+                            <tbody id="detHistoryBody" class="divide-y divide-galo-border/60 text-xs"></tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===================================================================== -->
+    <!-- MODAL: SCENARIOS A / B / C COMPARISON                                 -->
+    <!-- ===================================================================== -->
+    <div id="scenariosModal" role="dialog" aria-modal="true" class="fixed inset-0 bg-black/85 backdrop-blur-sm hidden items-center justify-center z-50 p-4 no-print">
+        <div class="bg-galo-panel border border-galo-gold/60 rounded-2xl max-w-4xl w-full overflow-hidden shadow-2xl">
+            <div class="px-5 py-3.5 bg-black border-b border-galo-border flex items-center justify-between">
+                <div>
+                    <h3 class="font-display text-lg font-bold text-galo-gold uppercase">Comparador de Cenários Executivos (A / B / C)</h3>
+                    <p class="text-xs text-slate-300">Salve o estado atual em um slot ou carregue presets estratégicos para comparar lado a lado</p>
+                </div>
+                <button onclick="closeScenariosModal()" aria-label="Fechar modal" class="text-slate-300 hover:text-white text-2xl font-bold px-2">&times;</button>
+            </div>
+            <div id="scenariosGrid" class="p-5 grid grid-cols-1 md:grid-cols-3 gap-4 text-xs"></div>
+        </div>
+    </div>
+
+    <!-- ===================================================================== -->
+    <!-- MODAL: CSV STATS IMPORT & JSON/CSV EXPORT                             -->
+    <!-- ===================================================================== -->
+    <div id="csvModal" role="dialog" aria-modal="true" class="fixed inset-0 bg-black/85 backdrop-blur-sm hidden items-center justify-center z-50 p-4 no-print">
+        <div class="bg-galo-panel border border-galo-gold/60 rounded-2xl max-w-xl w-full overflow-hidden shadow-2xl">
+            <div class="px-5 py-3.5 bg-black border-b border-galo-border flex items-center justify-between">
+                <h3 class="font-display text-base font-bold text-galo-gold uppercase">Governança de Dados: Importar CSV Real / Exportar</h3>
+                <button onclick="closeCsvModal()" aria-label="Fechar modal" class="text-slate-300 hover:text-white text-xl font-bold px-2">&times;</button>
+            </div>
+            <div class="p-5 space-y-4 text-xs">
+                <div class="bg-black/70 border border-galo-border rounded-lg p-3 space-y-2">
+                    <p class="text-slate-200 font-semibold">1. Importar Estatísticas Reais (CSV)</p>
+                    <p class="text-slate-300">Cole linhas no formato <code class="text-galo-gold">nome,jogos,gols,assistencias,nota,minutos</code> para substituir os dados simulados por métricas reais coletadas por você:</p>
+                    <textarea id="csvInputArea" rows="4" placeholder="Everson,52,0,0,7.18,4680&#10;Isidro Pitta,48,19,5,7.32,3890" class="w-full bg-black border border-galo-border rounded-lg p-2.5 text-white font-mono text-[11px] focus:border-galo-gold focus:outline-none"></textarea>
+                    <button onclick="importCsvStats()" class="px-3 py-1.5 rounded-lg bg-galo-gold text-black font-bold">Aplicar CSV ao Painel</button>
+                </div>
+
+                <div class="bg-black/70 border border-galo-border rounded-lg p-3 flex flex-wrap items-center justify-between gap-2">
+                    <div>
+                        <p class="text-slate-200 font-semibold">2. Exportar Planejamento Completo</p>
+                        <p class="text-slate-300">Baixe a situação do elenco, compras, vendas e folha em CSV ou JSON.</p>
+                    </div>
+                    <div class="flex gap-2">
+                        <button onclick="exportPlanCSV()" class="px-3 py-1.5 rounded-lg bg-neutral-800 hover:bg-neutral-700 text-white font-bold border border-galo-border">Exportar CSV</button>
+                        <button onclick="exportPlanJSON()" class="px-3 py-1.5 rounded-lg bg-neutral-800 hover:bg-neutral-700 text-white font-bold border border-galo-border">Exportar JSON</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===================================================================== -->
+    <!-- HIDDEN PRINT ONE-PAGER FOR BOARD OF DIRECTORS                         -->
+    <!-- ===================================================================== -->
+    <div id="printReportContainer" class="hidden p-8 bg-white text-black font-sans"></div>
+
+    <!-- TOAST -->
+    <div id="toast" role="status" aria-live="polite" class="fixed bottom-4 left-4 bg-black border-l-4 border-galo-gold text-white px-4 py-2.5 rounded-lg shadow-2xl text-xs font-semibold transform translate-y-20 opacity-0 transition-all duration-300 z-50 no-print"></div>
+
+    <script>
+        // ============================================================
+        // 1. SECURITY & GOVERNANCE CONSTANTS (CLUB_FACTS)
+        // ============================================================
+        function esc(str) {
+            if (str === null || str === undefined) return '';
+            return String(str)
+                .replace(/&/g, '&amp;')
+                .replace(/</g, '&lt;')
+                .replace(/>/g, '&gt;')
+                .replace(/"/g, '&quot;')
+                .replace(/'/g, '&#39;');
+        }
+
+        const CLUB_FACTS = [
+            { label: 'Dívida Líquida SAF', value: 'R$ 1,77 Bi', sub: 'Bancos R$ 654M • Arena R$ 387M', source: 'Balanço/Estimativa SAF 2026', accent: 'border-red-500/40 text-red-400' },
+            { label: 'Serviço da Dívida', value: '~R$ 250M/ano', sub: 'R$ 20,8M/mês (CDI 15%)', source: 'Projeção Financeira 2026', accent: 'border-amber-500/40 text-amber-400' },
+            { label: 'Receita Operacional', value: 'R$ 768M/ano', sub: 'R$ 64,0M/mês (H2Bet + Nike)', source: 'Orçamento SAF 2026', accent: 'border-emerald-500/40 text-emerald-400' },
+            { label: 'Galo na Veia', value: '300.000 Sócios', sub: '+R$ 14,5M/mês recorrente', source: 'Programa Oficial Nov/2026', accent: 'border-galo-gold/40 text-galo-gold' },
+            { label: 'Valuation SAF', value: 'R$ 3,40 Bi', sub: 'Marca avaliada em R$ 772M', source: 'Relatório Valuation 2026', accent: 'border-purple-500/40 text-purple-300' },
+            { label: 'Contexto Esportivo', value: '4º Vice Cont.', sub: 'Exigência: Raça & Imposição', source: 'Briefing Diretoria Nov/2026', accent: 'border-galo-border text-slate-300' }
+        ];
+
+        function renderClubFacts() {
+            const bar = document.getElementById('clubFactsBar');
+            if (!bar) return;
+            bar.innerHTML = CLUB_FACTS.map(f => `
+                <div class="bg-galo-panel border ${f.accent.split(' ')[0]} rounded-lg px-2.5 py-1.5 flex items-center justify-between" title="Fonte: ${esc(f.source)}">
+                    <div>
+                        <span class="text-[10px] uppercase font-bold block ${f.accent.split(' ')[1]}">${esc(f.label)}</span>
+                        <span class="font-display text-sm font-bold text-white">${esc(f.value)}</span>
+                    </div>
+                    <span class="text-[10px] text-slate-400 text-right leading-tight">${esc(f.sub)}<br><em class="text-[9px] text-slate-500">${esc(f.source)}</em></span>
+                </div>
+            `).join('');
+        }
+
+        // ============================================================
+        // 2. PHOTO ENGINE (WIKIMEDIA API WITH CONCURRENCY LIMITER + HONEST COUNT)
+        // ============================================================
+        const playerWikiMap = {
+            'Everson':          { wiki: 'Everson (futebolista)', club: 'Atlético-MG', kit: '#09090B' },
+            'Delfim':           { wiki: null, club: 'Atlético-MG', kit: '#09090B' },
+            'Pedro Cobra':      { wiki: null, club: 'Atlético-MG (Base)', kit: '#09090B' },
+            'Robert Alves':     { wiki: null, club: 'Atlético-MG (Base)', kit: '#09090B' },
+            'Vitão':            { wiki: null, club: 'Atlético-MG (Base)', kit: '#09090B' }, // Vitor Fernandes - Base Galo
+            'Ruan Tressoldi':   { wiki: 'Ruan Tressoldi', club: 'Atlético-MG', kit: '#09090B' },
+            'Léo Duarte':       { wiki: 'Léo Duarte', club: 'Atlético-MG', kit: '#09090B' },
+            'Iván Román':       { wiki: 'Iván Román', club: 'Atlético-MG', kit: '#09090B' },
+            'Renan Lodi':       { wiki: 'Renan Lodi', club: 'Atlético-MG', kit: '#09090B' },
+            'Preciado':         { wiki: 'Ángelo Preciado', club: 'Atlético-MG', kit: '#09090B' },
+            'Pascini':          { wiki: null, club: 'Atlético-MG (Base)', kit: '#09090B' },
+            'Alexsander':       { wiki: 'Alexsander (futebolista)', club: 'Atlético-MG', kit: '#09090B' },
+            'Fred':             { wiki: 'Fred (futebolista, 1993)', club: 'Atlético-MG', kit: '#09090B' },
+            'Alan Franco':      { wiki: 'Alan Franco (futebolista equatoriano)', club: 'Atlético-MG', kit: '#09090B' },
+            'Índio':            { wiki: null, club: 'Atlético-MG', kit: '#09090B' },
+            'Cissé':            { wiki: null, club: 'Atlético-MG', kit: '#09090B' },
+            'Bernard':          { wiki: 'Bernard (futebolista)', club: 'Atlético-MG', kit: '#09090B' },
+            'Castaño':          { wiki: 'Kevin Castaño', club: 'Atlético-MG', kit: '#09090B' },
+            'Reinier':          { wiki: 'Reinier Jesus', club: 'Atlético-MG', kit: '#09090B' },
+            'Victor Hugo':      { wiki: 'Victor Hugo (futebolista, 2004)', club: 'Atlético-MG', kit: '#09090B' },
+            'Borbas':           { wiki: 'Thiago Borbas', club: 'Atlético-MG', kit: '#09090B' },
+            'Cuello':           { wiki: 'Tomás Cuello', club: 'Atlético-MG', kit: '#09090B' },
+            'Lyanco':           { wiki: 'Lyanco', club: 'Atlético-MG', kit: '#09090B' },
+            'Vitor Hugo':       { wiki: 'Vitor Hugo (futebolista)', club: 'Atlético-MG', kit: '#09090B' },
+            'Natanael':         { wiki: 'Natanael (futebolista, 2002)', club: 'Atlético-MG', kit: '#09090B' },
+            'Maycon':           { wiki: 'Maycon (futebolista)', club: 'Atlético-MG', kit: '#09090B' },
+            'Tomás Pérez':      { wiki: null, club: 'Atlético-MG', kit: '#09090B' },
+            'Gustavo Scarpa':   { wiki: 'Gustavo Scarpa', club: 'Atlético-MG', kit: '#09090B' },
+            'Igor Gomes':       { wiki: 'Igor Gomes', club: 'Atlético-MG', kit: '#09090B' },
+            'Cassierra':        { wiki: 'Mateo Cassierra', club: 'Atlético-MG', kit: '#09090B' },
+            'Alan Minda':       { wiki: 'Alan Minda', club: 'Atlético-MG', kit: '#09090B' },
+            'Cauã Soares':      { wiki: null, club: 'Atlético-MG (Base)', kit: '#09090B' },
+            'Dudu':             { wiki: 'Dudu (futebolista, 1992)', club: 'Atlético-MG', kit: '#09090B' },
+            'Isidro Pitta':     { wiki: 'Isidro Pitta', club: 'RB Bragantino', kit: '#DC2626' },
+            'Rafael Borré':     { wiki: 'Rafael Santos Borré', club: 'Internacional', kit: '#B91C1C' },
+            'Carlos Vinícius':  { wiki: 'Carlos Vinícius', club: 'Livre / Europa', kit: '#374151' },
+            'Tiquinho Soares':  { wiki: 'Tiquinho Soares', club: 'Santos', kit: '#1F2937' },
+            'Hércules':         { wiki: 'Hércules (futebolista)', club: 'Fluminense', kit: '#7F1D1D' },
+            'Zé Rafael':        { wiki: 'Zé Rafael', club: 'Santos', kit: '#1F2937' },
+            'Erick':            { wiki: 'Erick (futebolista, 1997)', club: 'Bahia', kit: '#1D4ED8' },
+            'Thiago Maia':      { wiki: 'Thiago Maia', club: 'Internacional', kit: '#B91C1C' },
+            'Gastón Martirena': { wiki: 'Gastón Martirena', club: 'Racing Club', kit: '#0284C7' },
+            'Agustín Giay':     { wiki: 'Agustín Giay', club: 'Palmeiras', kit: '#15803D' },
+            'William':          { wiki: 'William (futebolista, 1995)', club: 'Cruzeiro', kit: '#1E40AF' },
+            'Mayke':            { wiki: 'Mayke', club: 'Palmeiras', kit: '#15803D' },
+            'Joaquim':          { wiki: 'Joaquim (futebolista)', club: 'Tigres UANL', kit: '#D97706' },
+            'Willyan Rocha':    { wiki: 'Willyan Rocha', club: 'CSKA Moscou', kit: '#1E3A8A' },
+            'Gabriel Mercado':  { wiki: 'Gabriel Mercado', club: 'Internacional', kit: '#B91C1C' },
+            'André Ramalho':    { wiki: 'André Ramalho', club: 'Corinthians', kit: '#111827' },
+            'Casemiro':         { wiki: 'Casemiro', club: 'Manchester Utd', kit: '#991B1B' },
+            'Roberto Firmino':  { wiki: 'Roberto Firmino', club: 'Al-Ahli', kit: '#065F46' },
+            'Antoine Griezmann':{ wiki: 'Antoine Griezmann', club: 'Atlético Madrid', kit: '#B91C1C' },
+            'Paulo Dybala':     { wiki: 'Paulo Dybala', club: 'AS Roma', kit: '#7F1D1D' },
+            'Gabriel Jesus':    { wiki: 'Gabriel Jesus', club: 'Arsenal', kit: '#DC2626' },
+            'Richarlison':      { wiki: 'Richarlison', club: 'Tottenham', kit: '#1E293B' },
+            'Sergio Ramos':     { wiki: 'Sergio Ramos', club: 'Livre / Sevilla', kit: '#374151' },
+            'Nicolás Otamendi': { wiki: 'Nicolás Otamendi', club: 'Benfica', kit: '#B91C1C' },
+            'Dani Carvajal':    { wiki: 'Dani Carvajal', club: 'Real Madrid', kit: '#1E293B' },
+            'Kieran Trippier':  { wiki: 'Kieran Trippier', club: 'Newcastle', kit: '#111827' },
+            'Rodrigo De Paul':  { wiki: 'Rodrigo De Paul', club: 'Atlético Madrid', kit: '#B91C1C' },
+            'Fabinho':          { wiki: 'Fabinho (futebolista, 1993)', club: 'Al-Ittihad', kit: '#111827' }
+        };
+
+        const realPhotoCache = {};
+
+        function buildRealisticKitPortrait(player) {
+            const profile = playerWikiMap[player.name];
+            const kitColor = profile?.kit || '#09090B';
+            const isGalo = kitColor === '#09090B';
+            const initials = player.name.split(' ').map(n => n[0]).slice(0, 2).join('').toUpperCase();
+            return `data:image/svg+xml;utf8,${encodeURIComponent(`
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120">
+                    <defs>
+                        <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+                            <stop offset="0%" stop-color="#27272A"/>
+                            <stop offset="100%" stop-color="#09090B"/>
+                        </linearGradient>
+                    </defs>
+                    <rect width="120" height="120" fill="url(#bg)"/>
+                    <path d="M16,120 C20,84 100,84 104,120 Z" fill="${kitColor}"/>
+                    ${isGalo ? `
+                        <rect x="42" y="88" width="10" height="32" fill="#FFFFFF" opacity="0.9"/>
+                        <rect x="68" y="88" width="10" height="32" fill="#FFFFFF" opacity="0.9"/>
+                    ` : ''}
+                    <rect x="51" y="64" width="18" height="22" rx="6" fill="#D4A373"/>
+                    <ellipse cx="60" cy="46" rx="20" ry="24" fill="#E0AC69"/>
+                    <path d="M40,42 C40,22 80,22 80,42 C78,30 42,30 40,42 Z" fill="#18181B"/>
+                    <text x="60" y="109" font-family="Arial, sans-serif" font-weight="900" font-size="14" fill="#EAB308" text-anchor="middle">${initials}</text>
+                </svg>
+            `)}`;
+        }
+
+        function getPlayerAvatarHTML(player, sizeClass = 'w-11 h-11') {
+            const fallbackKit = buildRealisticKitPortrait(player);
+            const primarySrc = realPhotoCache[player.name] || fallbackKit;
+            return `<img src="${primarySrc}" data-player-name="${esc(player.name)}" alt="${esc(player.name)}" onerror="this.onerror=null; this.src='${fallbackKit}';" class="${sizeClass} object-cover object-top rounded-full bg-neutral-900">`;
+        }
+
+        function isBannedImageUrl(url) {
+            const lower = url.toLowerCase();
+            return lower.includes('bandeira') || lower.includes('flag_') || lower.includes('coat_of_arms') || lower.includes('brasao') || lower.includes('escudo') || lower.includes('map_of');
+        }
+
+        async function fetchRealPhotoForPlayer(playerName) {
+            if (realPhotoCache[playerName]) return realPhotoCache[playerName];
+            const profile = playerWikiMap[playerName];
+            if (profile && profile.wiki === null) return null;
+
+            const exactTitle = profile?.wiki;
+            if (exactTitle) {
+                for (const lang of ['pt', 'en']) {
+                    try {
+                        const res = await fetch(`https://${lang}.wikipedia.org/w/api.php?action=query&titles=${encodeURIComponent(exactTitle)}&prop=pageimages&piprop=thumbnail&pithumbsize=320&format=json&origin=*`);
+                        const data = await res.json();
+                        const page = Object.values(data?.query?.pages || {})[0];
+                        const src = page?.thumbnail?.source;
+                        if (src && !isBannedImageUrl(src)) {
+                            realPhotoCache[playerName] = src;
+                            return src;
+                        }
+                    } catch {}
+                }
+            }
+
+            for (const q of [`${playerName} futebolista`, `${playerName} footballer`]) {
+                for (const lang of ['pt', 'en']) {
+                    try {
+                        const res = await fetch(`https://${lang}.wikipedia.org/w/api.php?action=query&generator=search&gsrsearch=${encodeURIComponent(q)}&gsrlimit=1&prop=pageimages&piprop=thumbnail&pithumbsize=320&format=json&origin=*`);
+                        const data = await res.json();
+                        const page = Object.values(data?.query?.pages || {})[0];
+                        const src = page?.thumbnail?.source;
+                        if (src && !isBannedImageUrl(src)) {
+                            realPhotoCache[playerName] = src;
+                            return src;
+                        }
+                    } catch {}
+                }
+            }
+            return null;
+        }
+
+        // Concurrency-limited photo loader (4 workers max to avoid rate limits)
+        async function syncPhotosWithQueue() {
+            const all = [...retainedSquad, ...outgoingList, ...marketTargets, ...worldEliteTargets];
+            const uniqueNames = [...new Set(all.map(p => p.name))];
+            let idx = 0;
+
+            async function worker() {
+                while (idx < uniqueNames.length) {
+                    const name = uniqueNames[idx++];
+                    const url = await fetchRealPhotoForPlayer(name);
+                    if (url) {
+                        document.querySelectorAll(`img[data-player-name="${CSS.escape(name)}"]`).forEach(img => {
+                            img.src = url;
+                        });
+                    }
+                }
+            }
+
+            await Promise.all([worker(), worker(), worker(), worker()]);
+            const realCount = Object.keys(realPhotoCache).length;
+            const badge = document.getElementById('photoSyncBadge');
+            if (badge) {
+                badge.innerHTML = `<span class="w-2 h-2 rounded-full bg-emerald-400 inline-block"></span> ${realCount} fotos reais carregadas (restante: avatar uniforme)`;
+            }
+        }
+
+        // ============================================================
+        // 3. ENRICHED PLAYER DATABASE (TORCIDA, SALÁRIO, CONTRATO, VALOR)
+        // ============================================================
+        // salario = R$ mil/mês | fimContrato = ano | valorMercado = R$ M | rejeicaoTorcida = 0..100
+        const initialRetained = [
+            { id: 'ret_1',  name: 'Everson',        pos: 'GOL', age: 36, ovr: 82, pac: 54, phy: 81, grinta: 89, identidade: 92, decisao: 90, disponibilidade: 94, salario: 750, fimContrato: 2027, valorMercado: 8,  rejeicaoTorcida: 12, note: 'Goleiro titular, pegador de pênaltis e referência na saída com os pés.' },
+            { id: 'ret_2',  name: 'Delfim',         pos: 'GOL', age: 24, ovr: 74, pac: 48, phy: 75, grinta: 80, identidade: 85, decisao: 70, disponibilidade: 95, salario: 110, fimContrato: 2028, valorMercado: 4,  rejeicaoTorcida: 10, note: 'Reserva imediato seguro e formado no clube.' },
+            { id: 'ret_3',  name: 'Pedro Cobra',    pos: 'GOL', age: 20, ovr: 71, pac: 50, phy: 72, grinta: 78, identidade: 86, decisao: 65, disponibilidade: 96, salario: 45,  fimContrato: 2029, valorMercado: 3,  rejeicaoTorcida: 5,  note: 'Goleiro da base em transição para o profissional.' },
+            { id: 'ret_4',  name: 'Robert Alves',   pos: 'GOL', age: 21, ovr: 72, pac: 49, phy: 73, grinta: 79, identidade: 84, decisao: 68, disponibilidade: 95, salario: 55,  fimContrato: 2028, valorMercado: 3,  rejeicaoTorcida: 8,  note: 'Jovem goleiro com boa envergadura e reflexo.' },
+            { id: 'ret_5',  name: 'Vitão', fullName: 'Vitão (Vitor Fernandes)', pos: 'ZAG', age: 20, ovr: 80, pac: 79, phy: 82, grinta: 88, identidade: 90, decisao: 78, disponibilidade: 93, salario: 180, fimContrato: 2029, valorMercado: 45, rejeicaoTorcida: 6, isVitao: true, note: 'Vitor Fernandes: zagueiro recém-subido da base do Galo, personalidade gigante e sondado por Premier League e La Liga.' },
+            { id: 'ret_6',  name: 'Ruan Tressoldi', pos: 'ZAG', age: 27, ovr: 78, pac: 75, phy: 81, grinta: 83, identidade: 75, decisao: 76, disponibilidade: 84, salario: 580, fimContrato: 2028, valorMercado: 18, rejeicaoTorcida: 24, note: 'Zagueiro de boa velocidade e imposição no jogo físico.' },
+            { id: 'ret_7',  name: 'Léo Duarte',     pos: 'ZAG', age: 30, ovr: 79, pac: 74, phy: 80, grinta: 84, identidade: 74, decisao: 80, disponibilidade: 86, salario: 650, fimContrato: 2028, valorMercado: 15, rejeicaoTorcida: 20, note: 'Experiência internacional e bom posicionamento defensivo.' },
+            { id: 'ret_8',  name: 'Iván Román',     pos: 'ZAG', age: 20, ovr: 76, pac: 76, phy: 79, grinta: 88, identidade: 78, decisao: 75, disponibilidade: 91, salario: 240, fimContrato: 2029, valorMercado: 22, rejeicaoTorcida: 9,  note: 'Zagueiro chileno promissor retornando de empréstimo com mais rodagem.' },
+            { id: 'ret_9',  name: 'Renan Lodi',     pos: 'LE',  age: 28, ovr: 82, pac: 84, phy: 78, grinta: 85, identidade: 80, decisao: 84, disponibilidade: 85, salario: 1100, fimContrato: 2028, valorMercado: 35, rejeicaoTorcida: 15, note: 'Lateral de seleção, intensidade pelos lados e cruzamento preciso.' },
+            { id: 'ret_10', name: 'Preciado',       pos: 'LD',  age: 28, ovr: 79, pac: 85, phy: 79, grinta: 86, identidade: 79, decisao: 80, disponibilidade: 83, salario: 620, fimContrato: 2028, valorMercado: 20, rejeicaoTorcida: 22, note: 'Lateral equatoriano veloz e de forte apoio ofensivo.' },
+            { id: 'ret_11', name: 'Pascini',        pos: 'LE',  age: 18, ovr: 71, pac: 79, phy: 68, grinta: 80, identidade: 88, decisao: 65, disponibilidade: 96, salario: 40,  fimContrato: 2029, valorMercado: 6,  rejeicaoTorcida: 4,  note: 'Lateral-esquerdo promissor da base alvinegra.' },
+            { id: 'ret_12', name: 'Alexsander',     pos: 'VOL', age: 23, ovr: 80, pac: 79, phy: 80, grinta: 87, identidade: 81, decisao: 80, disponibilidade: 84, salario: 680, fimContrato: 2029, valorMercado: 32, rejeicaoTorcida: 14, note: 'Meio-campista dinâmico, boa condução e polivalência.' },
+            { id: 'ret_13', name: 'Fred',           pos: 'VOL', age: 33, ovr: 82, pac: 74, phy: 79, grinta: 91, identidade: 86, decisao: 89, disponibilidade: 85, salario: 1250, fimContrato: 2027, valorMercado: 18, rejeicaoTorcida: 14, note: 'Experiência de Copa do Mundo, liderança e entrega total.' },
+            { id: 'ret_14', name: 'Alan Franco',    pos: 'VOL', age: 28, ovr: 80, pac: 78, phy: 82, grinta: 93, identidade: 91, decisao: 84, disponibilidade: 92, salario: 640, fimContrato: 2028, valorMercado: 24, rejeicaoTorcida: 8,  note: 'Pulmão do meio-campo, marcação incansável e entrega 100%.' },
+            { id: 'ret_15', name: 'Índio',          pos: 'VOL', age: 22, ovr: 74, pac: 76, phy: 76, grinta: 82, identidade: 83, decisao: 72, disponibilidade: 90, salario: 140, fimContrato: 2028, valorMercado: 8,  rejeicaoTorcida: 12, note: 'Volante de boa chegada e intensidade na marcação.' },
+            { id: 'ret_16', name: 'Cissé',          pos: 'VOL', age: 21, ovr: 75, pac: 78, phy: 81, grinta: 84, identidade: 76, decisao: 71, disponibilidade: 91, salario: 190, fimContrato: 2029, valorMercado: 12, rejeicaoTorcida: 11, note: 'Força física e recuperação de bola no meio.' },
+            { id: 'ret_17', name: 'Bernard',        pos: 'MEI', age: 34, ovr: 80, pac: 79, phy: 64, grinta: 88, identidade: 97, decisao: 85, disponibilidade: 82, salario: 950, fimContrato: 2027, valorMercado: 10, rejeicaoTorcida: 19, note: 'Cria da casa, identificação máxima com o Galo e visão de jogo.' },
+            { id: 'ret_18', name: 'Castaño',        pos: 'MEI', age: 25, ovr: 78, pac: 77, phy: 75, grinta: 83, identidade: 76, decisao: 79, disponibilidade: 88, salario: 590, fimContrato: 2028, valorMercado: 25, rejeicaoTorcida: 18, note: 'Qualidade no passe entrelinhas e ritmo de seleção colombiana.' },
+            { id: 'ret_19', name: 'Reinier',        pos: 'MEI', age: 24, ovr: 79, pac: 78, phy: 76, grinta: 80, identidade: 77, decisao: 78, disponibilidade: 83, salario: 720, fimContrato: 2028, valorMercado: 26, rejeicaoTorcida: 23, note: 'Chegada na área, técnica refinada e poder de definição.' },
+            { id: 'ret_20', name: 'Victor Hugo',    pos: 'MEI', age: 22, ovr: 77, pac: 77, phy: 76, grinta: 82, identidade: 78, decisao: 76, disponibilidade: 89, salario: 420, fimContrato: 2029, valorMercado: 20, rejeicaoTorcida: 16, note: 'Meia canhoto de boa chegada ofensiva e chute de média distância.' },
+            { id: 'ret_21', name: 'Borbas',         pos: 'CA',  age: 24, ovr: 78, pac: 79, phy: 82, grinta: 86, identidade: 79, decisao: 78, disponibilidade: 87, salario: 540, fimContrato: 2028, valorMercado: 22, rejeicaoTorcida: 25, note: 'Atacante uruguaio de boa movimentação e finalização.' },
+            { id: 'ret_22', name: 'Cuello',         pos: 'CA',  age: 26, ovr: 79, pac: 85, phy: 75, grinta: 88, identidade: 84, decisao: 80, disponibilidade: 91, salario: 580, fimContrato: 2028, valorMercado: 24, rejeicaoTorcida: 14, note: 'Atacante agudo pelos lados, um-contra-um forte e recomposição.' }
+        ];
+
+        const initialOutgoing = [
+            { id: 'out_1',  name: 'Lyanco',         pos: 'ZAG', age: 29, ovr: 77, grinta: 85, salario: 720, fimContrato: 2028, valorMercado: 18, rejeicaoTorcida: 76, type: 'Venda',          fee: 18, note: 'Negociação definitiva para abrir espaço na folha e renovar a zaga.', sold: false },
+            { id: 'out_2',  name: 'Vitor Hugo',     pos: 'ZAG', age: 35, ovr: 74, grinta: 80, salario: 480, fimContrato: 2027, valorMercado: 3,  rejeicaoTorcida: 84, type: 'Venda',          fee: 3,  note: 'Fim de ciclo no elenco profissional.', sold: false },
+            { id: 'out_3',  name: 'Natanael',       pos: 'LD',  age: 24, ovr: 75, grinta: 79, salario: 340, fimContrato: 2028, valorMercado: 12, rejeicaoTorcida: 68, type: 'Empréstimo',     fee: 2,  note: 'Empréstimo para ganhar minutagem após oscilação na lateral direita.', sold: false },
+            { id: 'out_4',  name: 'Maycon',         pos: 'VOL', age: 29, ovr: 76, grinta: 77, salario: 680, fimContrato: 2027, valorMercado: 10, rejeicaoTorcida: 79, type: 'Venda',          fee: 10, note: 'Venda para abrir vaga de 2º volante com maior intensidade.', sold: false },
+            { id: 'out_5',  name: 'Tomás Pérez',    pos: 'VOL', age: 21, ovr: 75, grinta: 80, salario: 260, fimContrato: 2029, valorMercado: 12, rejeicaoTorcida: 55, type: 'Venda',          fee: 12, note: 'Ativo valorizado no mercado sul-americano/europeu.', sold: false },
+            { id: 'out_6',  name: 'Gustavo Scarpa', pos: 'MEI', age: 32, ovr: 79, grinta: 74, salario: 1150,fimContrato: 2027, valorMercado: 15, rejeicaoTorcida: 89, type: 'Venda',          fee: 15, note: 'Alto custo salarial e desgaste severo com a torcida após 2026.', sold: false },
+            { id: 'out_7',  name: 'Igor Gomes',     pos: 'MEI', age: 27, ovr: 75, grinta: 78, salario: 520, fimContrato: 2027, valorMercado: 8,  rejeicaoTorcida: 91, type: 'Venda',          fee: 8,  note: 'Saída definitiva para oxigenar o setor de criação.', sold: false },
+            { id: 'out_8',  name: 'Cassierra',      pos: 'CA',  age: 29, ovr: 77, grinta: 75, salario: 780, fimContrato: 2028, valorMercado: 16, rejeicaoTorcida: 74, type: 'Empréstimo',     fee: 4,  note: 'Empréstimo para liberar vaga de centroavante titular.', sold: false },
+            { id: 'out_9',  name: 'Alan Minda',     pos: 'CA',  age: 23, ovr: 75, grinta: 78, salario: 310, fimContrato: 2029, valorMercado: 14, rejeicaoTorcida: 58, type: 'Empréstimo',     fee: 3,  note: 'Empréstimo para desenvolvimento técnico.', sold: false },
+            { id: 'out_10', name: 'Cauã Soares',    pos: 'CA',  age: 19, ovr: 70, grinta: 81, salario: 60,  fimContrato: 2029, valorMercado: 5,  rejeicaoTorcida: 18, type: 'Empréstimo Base',fee: 0,  note: 'Joia da base: empréstimo estratégico para ganhar rodagem.', sold: false },
+            { id: 'out_11', name: 'Dudu',           pos: 'CA',  age: 34, ovr: 76, grinta: 73, salario: 1350,fimContrato: 2027, valorMercado: 4,  rejeicaoTorcida: 94, type: 'Rescisão / Venda',fee: 2,  note: 'Rescisão amigável / venda para aliviar a folha salarial.', sold: false }
+        ];
+
+        // Alvos realistas para as carências SAF (anosContrato usado para amortização real: custo / anosContrato)
+        const initialMarket = [
+            { id: 'mkt_1',  name: 'Isidro Pitta',     pos: 'CA',  age: 27, club: 'RB Bragantino', contract: 'Compra (SAF)',         cost: 22, anosContrato: 4, salario: 650,  mktAnnual: 3,  ovr: 81, pac: 79, phy: 88, grinta: 95, identidade: 86, decisao: 82, disponibilidade: 93, note: 'Tanque paraguaio: briga por toda bola e entrega física absurda.', signed: false },
+            { id: 'mkt_2',  name: 'Rafael Borré',     pos: 'CA',  age: 31, club: 'Internacional', contract: 'Compra (SAF)',         cost: 28, anosContrato: 3, salario: 1150, mktAnnual: 6,  ovr: 83, pac: 80, phy: 82, grinta: 94, identidade: 85, decisao: 91, disponibilidade: 87, note: 'Pressão pós-perda incansável e decisivo em mata-mata.', signed: false },
+            { id: 'mkt_3',  name: 'Carlos Vinícius',  pos: 'CA',  age: 31, club: 'Livre / Europa',contract: 'Livre / Pré-Contrato', cost: 6,  anosContrato: 3, salario: 780,  mktAnnual: 2,  ovr: 81, pac: 74, phy: 87, grinta: 87, identidade: 78, decisao: 81, disponibilidade: 84, note: 'Pivô clássico de área e jogo aéreo dominante. Só luvas.', signed: false },
+            { id: 'mkt_4',  name: 'Tiquinho Soares',  pos: 'CA',  age: 35, club: 'Santos',        contract: 'Livre / Pré-Contrato', cost: 4,  anosContrato: 2, salario: 720,  mktAnnual: 3,  ovr: 80, pac: 68, phy: 85, grinta: 89, identidade: 84, decisao: 86, disponibilidade: 80, note: 'Liderança, pivô de qualidade e presença de área.', signed: false },
+
+            { id: 'mkt_5',  name: 'Hércules',         pos: 'VOL', age: 26, club: 'Fluminense',    contract: 'Compra (SAF)',         cost: 34, anosContrato: 4, salario: 680,  mktAnnual: 4,  ovr: 83, pac: 83, phy: 84, grinta: 93, identidade: 85, decisao: 85, disponibilidade: 92, note: 'Motor box-to-box: marca forte e pisa na área para finalizar.', signed: false },
+            { id: 'mkt_6',  name: 'Zé Rafael',        pos: 'VOL', age: 33, club: 'Santos',        contract: 'Livre / Pré-Contrato', cost: 5,  anosContrato: 2, salario: 850,  mktAnnual: 3,  ovr: 82, pac: 73, phy: 86, grinta: 95, identidade: 88, decisao: 92, disponibilidade: 82, note: 'Imposição física, proteção de bola e mentalidade multicampeã.', signed: false },
+            { id: 'mkt_7',  name: 'Erick',            pos: 'VOL', age: 29, club: 'Bahia',         contract: 'Compra (SAF)',         cost: 20, anosContrato: 3, salario: 580,  mktAnnual: 2,  ovr: 81, pac: 78, phy: 84, grinta: 91, identidade: 82, decisao: 81, disponibilidade: 90, note: 'Infiltração letal, bola aérea forte e fôlego nos 90 min.', signed: false },
+            { id: 'mkt_8',  name: 'Thiago Maia',      pos: 'VOL', age: 29, club: 'Internacional', contract: 'Livre / Pré-Contrato', cost: 6,  anosContrato: 3, salario: 740,  mktAnnual: 2,  ovr: 81, pac: 76, phy: 81, grinta: 90, identidade: 82, decisao: 85, disponibilidade: 85, note: 'Canhoto aguerrido, boa saída e experiência em finais.', signed: false },
+
+            { id: 'mkt_9',  name: 'Gastón Martirena', pos: 'LD',  age: 26, club: 'Racing Club',   contract: 'Compra (SAF)',         cost: 24, anosContrato: 4, salario: 560,  mktAnnual: 3,  ovr: 82, pac: 85, phy: 82, grinta: 94, identidade: 86, decisao: 87, disponibilidade: 92, note: 'Raça uruguaia pura, chegada ofensiva mortal e intensidade.', signed: false },
+            { id: 'mkt_10', name: 'Agustín Giay',     pos: 'LD',  age: 22, club: 'Palmeiras',     contract: 'Compra (SAF)',         cost: 36, anosContrato: 5, salario: 620,  mktAnnual: 3,  ovr: 81, pac: 86, phy: 81, grinta: 92, identidade: 83, decisao: 80, disponibilidade: 94, note: 'Potência física, marcação firme e alto potencial de revenda.', signed: false },
+            { id: 'mkt_11', name: 'William',          pos: 'LD',  age: 31, club: 'Cruzeiro',      contract: 'Livre / Pré-Contrato', cost: 6,  anosContrato: 2, salario: 690,  mktAnnual: 3,  ovr: 82, pac: 82, phy: 79, grinta: 88, identidade: 75, decisao: 82, disponibilidade: 86, note: 'Apoio técnico, cruzamento preciso e regularidade.', signed: false },
+            { id: 'mkt_12', name: 'Mayke',            pos: 'LD',  age: 33, club: 'Palmeiras',     contract: 'Livre / Pré-Contrato', cost: 4,  anosContrato: 2, salario: 640,  mktAnnual: 1,  ovr: 80, pac: 81, phy: 78, grinta: 90, identidade: 82, decisao: 88, disponibilidade: 76, note: 'Sólido defensivamente e acostumado a decisões.', signed: false },
+
+            { id: 'mkt_13', name: 'Joaquim',          pos: 'ZAG', age: 27, club: 'Tigres UANL',   contract: 'Compra (SAF)',         cost: 28, anosContrato: 4, salario: 760,  mktAnnual: 2,  ovr: 83, pac: 81, phy: 87, grinta: 92, identidade: 83, decisao: 84, disponibilidade: 91, note: 'Velocidade de recuperação, força física e imposição aérea.', signed: false },
+            { id: 'mkt_14', name: 'Willyan Rocha',    pos: 'ZAG', age: 31, club: 'CSKA Moscou',   contract: 'Compra (SAF)',         cost: 22, anosContrato: 3, salario: 710,  mktAnnual: 2,  ovr: 82, pac: 75, phy: 89, grinta: 93, identidade: 84, decisao: 84, disponibilidade: 90, note: 'Xerife de 1,93m, dominante nos duelos e bola parada.', signed: false },
+            { id: 'mkt_15', name: 'Gabriel Mercado',  pos: 'ZAG', age: 39, club: 'Internacional', contract: 'Livre / Pré-Contrato', cost: 2,  anosContrato: 1, salario: 420,  mktAnnual: 1,  ovr: 80, pac: 64, phy: 84, grinta: 98, identidade: 90, decisao: 93, disponibilidade: 78, note: 'Liderança de vestiário, catimba argentina e espírito de guerra.', signed: false },
+            { id: 'mkt_16', name: 'André Ramalho',    pos: 'ZAG', age: 34, club: 'Corinthians',   contract: 'Livre / Pré-Contrato', cost: 4,  anosContrato: 2, salario: 680,  mktAnnual: 2,  ovr: 81, pac: 71, phy: 83, grinta: 88, identidade: 80, decisao: 83, disponibilidade: 85, note: 'Experiência europeia, boa saída de bola e voz de comando.', signed: false }
+        ];
+
+        const initialWorldElite = [
+            { id: 'wld_1',  name: 'Casemiro',         pos: 'VOL', age: 34, league: 'Premier League',   club: 'Manchester Utd',   contract: 'Pré-Contrato / Luvas', cost: 24, anosContrato: 2, salario: 1850, mktAnnual: 28, ovr: 86, pac: 66, phy: 88, grinta: 97, identidade: 92, decisao: 98, disponibilidade: 82, isStar: true, note: '5x Champions: explode venda de camisas Nike e fecha o meio.', signed: false },
+            { id: 'wld_2',  name: 'Roberto Firmino',  pos: 'CA',  age: 35, league: 'Saudi Pro League', club: 'Al-Ahli',          contract: 'Livre / Luvas',        cost: 22, anosContrato: 2, salario: 1700, mktAnnual: 26, ovr: 85, pac: 76, phy: 80, grinta: 92, identidade: 90, decisao: 94, disponibilidade: 85, isStar: true, note: 'Ídolo mundial: retorno recorrente em bilheteria e patrocínios.', signed: false },
+            { id: 'wld_3',  name: 'Antoine Griezmann',pos: 'MEI', age: 35, league: 'La Liga',          club: 'Atlético Madrid',  contract: 'Loucura Mundial',      cost: 55, anosContrato: 3, salario: 2400, mktAnnual: 42, ovr: 88, pac: 80, phy: 76, grinta: 95, identidade: 93, decisao: 96, disponibilidade: 91, isStar: true, note: 'Craque de Copa do Mundo: 300k sócios alavancam a operação.', signed: false },
+            { id: 'wld_4',  name: 'Paulo Dybala',     pos: 'MEI', age: 33, league: 'Serie A',          club: 'AS Roma',          contract: 'Loucura Mundial',      cost: 48, anosContrato: 3, salario: 2100, mktAnnual: 38, ovr: 87, pac: 81, phy: 68, grinta: 88, identidade: 86, decisao: 92, disponibilidade: 74, isStar: true, note: 'Camisa 10 de classe mundial e fenômeno comercial.', signed: false },
+            { id: 'wld_5',  name: 'Gabriel Jesus',    pos: 'CA',  age: 29, league: 'Premier League',   club: 'Arsenal',          contract: 'Loucura Mundial',      cost: 85, anosContrato: 4, salario: 2200, mktAnnual: 40, ovr: 85, pac: 84, phy: 78, grinta: 93, identidade: 89, decisao: 88, disponibilidade: 75, isStar: true, note: 'Operação histórica SAF: entrega intensa e seleção brasileira.', signed: false },
+            { id: 'wld_6',  name: 'Richarlison',      pos: 'CA',  age: 29, league: 'Premier League',   club: 'Tottenham',        contract: 'Loucura Mundial',      cost: 72, anosContrato: 4, salario: 1950, mktAnnual: 35, ovr: 84, pac: 83, phy: 84, grinta: 96, identidade: 94, decisao: 87, disponibilidade: 77, isStar: true, note: 'Pombo no Galo: raça pura e explosão de marketing nacional.', signed: false },
+            { id: 'wld_7',  name: 'Sergio Ramos',     pos: 'ZAG', age: 40, league: 'Livre / La Liga',  club: 'Livre no Mercado', contract: 'Livre / Luvas',        cost: 16, anosContrato: 1, salario: 1500, mktAnnual: 30, ovr: 84, pac: 63, phy: 85, grinta: 99, identidade: 95, decisao: 99, disponibilidade: 76, isStar: true, note: 'Xerife lendário: recorde absoluto de vendas de camisas.', signed: false },
+            { id: 'wld_8',  name: 'Nicolás Otamendi', pos: 'ZAG', age: 38, league: 'Liga Portugal',    club: 'Benfica',          contract: 'Livre / Pré-Contrato', cost: 10, anosContrato: 2, salario: 1200, mktAnnual: 14, ovr: 83, pac: 66, phy: 84, grinta: 97, identidade: 96, decisao: 95, disponibilidade: 88, isStar: true, note: 'Retorno do General: liderança pesada na defesa.', signed: false },
+            { id: 'wld_9',  name: 'Dani Carvajal',    pos: 'LD',  age: 34, league: 'La Liga',          club: 'Real Madrid',      contract: 'Pré-Contrato / Luvas', cost: 25, anosContrato: 2, salario: 1650, mktAnnual: 24, ovr: 86, pac: 80, phy: 82, grinta: 96, identidade: 93, decisao: 98, disponibilidade: 80, isStar: true, note: '6x Champions: resolve a lateral direita com mentalidade vencedora.', signed: false },
+            { id: 'wld_10', name: 'Kieran Trippier',  pos: 'LD',  age: 36, league: 'Premier League',   club: 'Newcastle',        contract: 'Livre / Luvas',        cost: 12, anosContrato: 2, salario: 1150, mktAnnual: 10, ovr: 83, pac: 75, phy: 76, grinta: 90, identidade: 84, decisao: 88, disponibilidade: 83, isStar: false, note: 'Bola parada letal e experiência de Premier League.', signed: false },
+            { id: 'wld_11', name: 'Rodrigo De Paul',  pos: 'VOL', age: 32, league: 'La Liga',          club: 'Atlético Madrid',  contract: 'Loucura Mundial',      cost: 68, anosContrato: 4, salario: 2050, mktAnnual: 32, ovr: 86, pac: 80, phy: 84, grinta: 98, identidade: 94, decisao: 95, disponibilidade: 89, isStar: true, note: 'Motor campeão do mundo: símbolo máximo de raça e qualidade.', signed: false },
+            { id: 'wld_12', name: 'Fabinho',          pos: 'VOL', age: 33, league: 'Saudi Pro League', club: 'Al-Ittihad',       contract: 'Compra / Acordo',      cost: 32, anosContrato: 3, salario: 1600, mktAnnual: 18, ovr: 84, pac: 70, phy: 85, grinta: 91, identidade: 86, decisao: 92, disponibilidade: 86, isStar: true, note: 'Volante de elite mundial com imposição física.', signed: false }
+        ];
+
+        // State
+        let retainedSquad = JSON.parse(JSON.stringify(initialRetained));
+        let outgoingList = JSON.parse(JSON.stringify(initialOutgoing));
+        let marketTargets = JSON.parse(JSON.stringify(initialMarket));
+        let worldEliteTargets = JSON.parse(JSON.stringify(initialWorldElite));
+        let vitaoSold = false;
+        let currentPosFilter = 'ALL';
+        let currentFormation = '4-2-3-1';
+        let activeSlotIndex = null;
+        let customCsvStats = {}; // Imported real CSV stats by player name
+
+        // DNA Galo Score Weights
+        let dnaWeights = { intensity: 30, identity: 25, clutch: 20, availability: 15, value: 10 };
+
+        // Scenarios A/B/C in-memory storage
+        let savedScenarios = {
+            A: {
+                name: 'Cenário A • Equilíbrio SAF',
+                desc: 'Foco em jogadores livres/pré-contrato e limpeza da barca para manter Fair Play folgado.',
+                budget: 55,
+                vitaoSold: false,
+                soldIds: ['out_1', 'out_2', 'out_4', 'out_6', 'out_7', 'out_11'],
+                signedIds: ['mkt_3', 'mkt_6', 'mkt_9', 'mkt_14'],
+                formation: '4-2-3-1'
+            },
+            B: {
+                name: 'Cenário B • Reconstrução Agressiva',
+                desc: 'Venda do Vitão (+45M) e da barca para investir pesado em titulares jovens de imposição.',
+                budget: 55,
+                vitaoSold: true,
+                soldIds: ['out_1', 'out_2', 'out_3', 'out_4', 'out_5', 'out_6', 'out_7', 'out_8', 'out_9', 'out_10', 'out_11'],
+                signedIds: ['mkt_1', 'mkt_5', 'mkt_10', 'mkt_13'],
+                formation: '4-2-3-1'
+            },
+            C: {
+                name: 'Cenário C • Loucura Mundial + Mkt',
+                desc: 'Contratação de estrelas globais (Casemiro + Sergio Ramos + Firmino) com retorno comercial.',
+                budget: 55,
+                vitaoSold: false,
+                soldIds: ['out_1', 'out_2', 'out_4', 'out_6', 'out_7', 'out_8', 'out_11'],
+                signedIds: ['wld_1', 'wld_2', 'wld_7', 'mkt_9'],
+                formation: '4-2-3-1'
+            }
+        };
+
+        // Formations (PD accepts both MEI and CA so Cuello is eligible in autoBestXI!)
+        const formations = {
+            '4-2-3-1': [
+                { role: 'GOL', allowed: ['GOL'],        label: 'GOL',    x: 50, y: 89, playerId: 'ret_1' },
+                { role: 'LD',  allowed: ['LD'],         label: 'LD',     x: 85, y: 71, playerId: 'ret_10' },
+                { role: 'ZAG', allowed: ['ZAG'],        label: 'ZAG',    x: 64, y: 75, playerId: 'ret_5' },
+                { role: 'ZAG', allowed: ['ZAG'],        label: 'ZAG',    x: 36, y: 75, playerId: 'ret_6' },
+                { role: 'LE',  allowed: ['LE'],         label: 'LE',     x: 15, y: 71, playerId: 'ret_9' },
+                { role: 'VOL', allowed: ['VOL'],        label: 'VOL',    x: 36, y: 53, playerId: 'ret_14' },
+                { role: 'VOL', allowed: ['VOL'],        label: '2º VOL', x: 64, y: 53, playerId: 'ret_12' },
+                { role: 'MEI', allowed: ['MEI', 'CA'],  label: 'PD',     x: 82, y: 33, playerId: 'ret_22' },
+                { role: 'MEI', allowed: ['MEI'],        label: 'MEI',    x: 50, y: 31, playerId: 'ret_17' },
+                { role: 'MEI', allowed: ['MEI', 'CA'],  label: 'PE',     x: 18, y: 33, playerId: 'ret_19' },
+                { role: 'CA',  allowed: ['CA'],         label: 'ATA',    x: 50, y: 12, playerId: 'ret_21' }
+            ],
+            '4-4-2': [
+                { role: 'GOL', allowed: ['GOL'],        label: 'GOL',    x: 50, y: 89, playerId: 'ret_1' },
+                { role: 'LD',  allowed: ['LD'],         label: 'LD',     x: 85, y: 71, playerId: 'ret_10' },
+                { role: 'ZAG', allowed: ['ZAG'],        label: 'ZAG',    x: 64, y: 75, playerId: 'ret_5' },
+                { role: 'ZAG', allowed: ['ZAG'],        label: 'ZAG',    x: 36, y: 75, playerId: 'ret_6' },
+                { role: 'LE',  allowed: ['LE'],         label: 'LE',     x: 15, y: 71, playerId: 'ret_9' },
+                { role: 'VOL', allowed: ['VOL'],        label: 'VOL',    x: 50, y: 57, playerId: 'ret_14' },
+                { role: 'VOL', allowed: ['VOL'],        label: '2º VOL', x: 75, y: 43, playerId: 'ret_12' },
+                { role: 'VOL', allowed: ['VOL'],        label: '2º VOL', x: 25, y: 43, playerId: 'ret_13' },
+                { role: 'MEI', allowed: ['MEI'],        label: 'MEI',    x: 50, y: 30, playerId: 'ret_17' },
+                { role: 'CA',  allowed: ['CA', 'MEI'],  label: 'ATA',    x: 35, y: 12, playerId: 'ret_22' },
+                { role: 'CA',  allowed: ['CA'],         label: 'ATA',    x: 65, y: 12, playerId: 'ret_21' }
+            ],
+            '3-5-2': [
+                { role: 'GOL', allowed: ['GOL'],        label: 'GOL',    x: 50, y: 89, playerId: 'ret_1' },
+                { role: 'ZAG', allowed: ['ZAG'],        label: 'ZAG',    x: 75, y: 74, playerId: 'ret_6' },
+                { role: 'ZAG', allowed: ['ZAG'],        label: 'ZAG',    x: 50, y: 76, playerId: 'ret_5' },
+                { role: 'ZAG', allowed: ['ZAG'],        label: 'ZAG',    x: 25, y: 74, playerId: 'ret_7' },
+                { role: 'LD',  allowed: ['LD', 'MEI'],  label: 'ALA D',  x: 87, y: 49, playerId: 'ret_10' },
+                { role: 'VOL', allowed: ['VOL'],        label: 'VOL',    x: 36, y: 52, playerId: 'ret_14' },
+                { role: 'VOL', allowed: ['VOL'],        label: '2º VOL', x: 64, y: 52, playerId: 'ret_12' },
+                { role: 'LE',  allowed: ['LE', 'MEI'],  label: 'ALA E',  x: 13, y: 49, playerId: 'ret_9' },
+                { role: 'MEI', allowed: ['MEI'],        label: 'MEI',    x: 50, y: 31, playerId: 'ret_17' },
+                { role: 'CA',  allowed: ['CA', 'MEI'],  label: 'ATA',    x: 35, y: 12, playerId: 'ret_22' },
+                { role: 'CA',  allowed: ['CA'],         label: 'ATA',    x: 65, y: 12, playerId: 'ret_21' }
+            ]
+        };
+
+        let lineups = JSON.parse(JSON.stringify(formations));
+
+        // ============================================================
+        // 4. DNA GALO SCORE & REAL PAYROLL / FAIR PLAY ENGINE
+        // ============================================================
+        function computeDnaScore(p) {
+            const intensity = p.grinta || 80;
+            const identity = p.identidade || 80;
+            const clutch = p.decisao || 80;
+            const avail = p.disponibilidade || 85;
+            // Cost-benefit: higher OVR per R$M spent
+            const costFactor = p.cost !== undefined ? Math.max(55, Math.min(99, 100 - (p.cost * 0.55) + ((p.ovr - 78) * 2.5))) : Math.min(98, p.ovr + 6);
+
+            const totalW = (dnaWeights.intensity + dnaWeights.identity + dnaWeights.clutch + dnaWeights.availability + dnaWeights.value) || 1;
+            const weighted = (
+                intensity * dnaWeights.intensity +
+                identity * dnaWeights.identity +
+                clutch * dnaWeights.clutch +
+                avail * dnaWeights.availability +
+                costFactor * dnaWeights.value
+            ) / totalW;
+
+            return Math.round(weighted);
+        }
+
+        function getAllMarketPool() {
+            return [...marketTargets, ...worldEliteTargets];
+        }
+
+        function getActiveSquad() {
+            const base = retainedSquad.filter(p => !(p.isVitao && vitaoSold));
+            const unsoldBarca = outgoingList.filter(o => !o.sold).map(o => ({
+                ...o,
+                pac: 75,
+                phy: 76,
+                identidade: Math.max(40, 100 - o.rejeicaoTorcida),
+                decisao: 75,
+                disponibilidade: 82
+            }));
+            const signed = getAllMarketPool().filter(m => m.signed).map(m => ({ ...m, isNew: true }));
+            return [...signed, ...base, ...unsoldBarca];
+        }
+
+        function formatBRL(val) {
+            return `R$ ${val.toFixed(1).replace('.', ',')}M`;
+        }
+
+        function showToast(msg) {
+            const t = document.getElementById('toast');
+            t.textContent = msg;
+            t.classList.remove('translate-y-20', 'opacity-0');
+            setTimeout(() => t.classList.add('translate-y-20', 'opacity-0'), 3000);
+        }
+
+        function getFinancialMetrics() {
+            const baseCash = parseFloat(document.getElementById('baseBudgetInput')?.value) || 0;
+            const barcaSales = outgoingList.reduce((acc, p) => acc + (p.sold ? p.fee : 0), 0);
+            const totalSales = barcaSales + (vitaoSold ? 45 : 0);
+
+            const signedList = getAllMarketPool().filter(m => m.signed);
+            const acquisitionSpend = signedList.reduce((acc, m) => acc + m.cost, 0);
+            const cashBalance = baseCash + totalSales - acquisitionSpend;
+
+            // Real Payroll (13 months including 13º + encargos ~ 13.3x monthly salary)
+            const activePlayers = getActiveSquad();
+            const monthlySalariesK = activePlayers.reduce((acc, p) => acc + (p.salario || 400), 0);
+            const annualSalariesM = (monthlySalariesK * 13.3) / 1000;
+
+            // Real Amortization of new signings (Custo / anosContrato) + base squad amortization (~R$ 75M)
+            const newAmortizationM = signedList.reduce((acc, m) => acc + (m.cost / (m.anosContrato || 3)), 0);
+            const totalPayrollAndAmortM = 75 + annualSalariesM + newAmortizationM;
+
+            // Future recurring commercial revenue (separated from immediate cash!)
+            const futureMarketingAnnualM = signedList.reduce((acc, m) => acc + (m.mktAnnual || 0), 0);
+
+            // CBF Fair Play = (Payroll + Amortization) / (Base Operational Revenue 768M + Sales + Future Mkt)
+            const totalRelevantRevenueM = 768 + totalSales + futureMarketingAnnualM;
+            const fairPlayPct = (totalPayrollAndAmortM / totalRelevantRevenueM) * 100;
+
+            return {
+                baseCash,
+                totalSales,
+                acquisitionSpend,
+                cashBalance,
+                monthlySalariesK,
+                annualSalariesM,
+                newAmortizationM,
+                totalPayrollAndAmortM,
+                futureMarketingAnnualM,
+                totalRelevantRevenueM,
+                fairPlayPct,
+                signedList
+            };
+        }
+
+        function updateFinancials() {
+            const fm = getFinancialMetrics();
+
+            const balEl = document.getElementById('kpiBalance');
+            balEl.textContent = formatBRL(fm.cashBalance);
+            balEl.className = `font-display text-base font-bold ${fm.cashBalance >= 0 ? 'text-galo-gold' : 'text-red-400'}`;
+
+            document.getElementById('kpiPayroll').textContent = formatBRL(fm.totalPayrollAndAmortM);
+            document.getElementById('kpiFutureMkt').textContent = `+${formatBRL(fm.futureMarketingAnnualM)}`;
+
+            const fpEl = document.getElementById('kpiFairPlay');
+            fpEl.textContent = `${fm.fairPlayPct.toFixed(1).replace('.', ',')}% ${fm.fairPlayPct <= 70 ? 'OK' : 'EXCEDE 70%'}`;
+            fpEl.className = `font-display text-sm font-bold ${fm.fairPlayPct <= 70 ? 'text-emerald-400' : 'text-red-400'}`;
+
+            document.getElementById('badgeSigned').textContent = fm.signedList.length;
+            const soldCount = outgoingList.filter(o => o.sold).length + (vitaoSold ? 1 : 0);
+            document.getElementById('badgeSold').textContent = `${soldCount}/12`;
+        }
+
+        // ============================================================
+        // 5. AUTOMATIC POSITIONAL SHORTAGES (BASED ON ACTIVE SQUAD)
+        // ============================================================
+        function renderDynamicShortages() {
+            const bar = document.getElementById('dynamicShortageBar');
+            if (!bar) return;
+
+            const active = getActiveSquad();
+            const targets = [
+                { pos: 'CA',  label: 'Centroavante', ideal: 3 },
+                { pos: 'VOL', label: 'Volantes',     ideal: 5 },
+                { pos: 'LD',  label: 'Lat. Direito', ideal: 2 },
+                { pos: 'ZAG', label: 'Zagueiros',    ideal: 4 },
+                { pos: 'MEI', label: 'Meias/Pontas', ideal: 4 }
+            ];
+
+            bar.innerHTML = `<span class="text-slate-400 font-bold uppercase mr-1">Carência Real Pós-Saídas:</span>` + targets.map(t => {
+                const count = active.filter(p => p.pos === t.pos).length;
+                const diff = count - t.ideal;
+                let badgeClass = 'bg-emerald-500/15 text-emerald-300 border-emerald-500/30';
+                let statusText = `${count}/${t.ideal} OK`;
+                if (diff < 0) {
+                    badgeClass = 'bg-red-500/20 text-red-300 border-red-500/40 font-bold';
+                    statusText = `${count}/${t.ideal} (Falta ${Math.abs(diff)})`;
+                } else if (diff === 0) {
+                    badgeClass = 'bg-amber-500/15 text-amber-300 border-amber-500/30';
+                }
+                return `<button onclick="setPosFilterFromBadge('${t.pos}')" class="px-2 py-0.5 rounded border ${badgeClass} hover:brightness-125 transition">${t.label}: ${statusText}</button>`;
+            }).join('');
+        }
+
+        function setPosFilterFromBadge(pos) {
+            currentPosFilter = pos;
+            document.querySelectorAll('.pos-btn').forEach(b => {
+                const match = b.dataset.pos === pos;
+                b.classList.toggle('bg-galo-gold', match);
+                b.classList.toggle('text-black', match);
+                b.classList.toggle('font-bold', match);
+                b.classList.toggle('text-slate-300', !match);
+            });
+            renderLeftColumn();
+        }
+
+        // ============================================================
+        // 6. LEFT COLUMN RENDERING (TARGETS, WORLD ELITE & BARCA)
+        // ============================================================
+        function renderTargetCard(m) {
+            const isFree = m.contract.includes('Livre') || m.contract.includes('Pré-Contrato');
+            const isStar = m.isStar;
+            const dna = computeDnaScore(m);
+            const paybackMonths = m.mktAnnual > 0 ? Math.round(m.cost / (m.mktAnnual / 12)) : null;
+
+            return `
+            <div class="bg-galo-card border ${m.signed ? 'border-galo-gold bg-galo-gold/10' : (isStar ? 'border-purple-500/40' : 'border-galo-border')} rounded-lg p-2.5 flex items-center justify-between gap-2.5 transition">
+                <div role="button" tabindex="0" onclick="openPlayerDetails('${esc(m.id)}')" onkeydown="if(event.key==='Enter')openPlayerDetails('${esc(m.id)}')" class="flex items-center gap-2.5 min-w-0 cursor-pointer group focus:outline-none">
+                    <div class="relative shrink-0">
+                        ${getPlayerAvatarHTML(m, 'w-11 h-11 border group-hover:scale-105 transition ' + (isStar ? 'border-purple-400' : 'border-galo-border'))}
+                        <span class="absolute -bottom-1 -right-1 bg-black border border-galo-gold text-galo-gold font-fut font-bold text-[11px] px-1 rounded leading-tight">${m.ovr}</span>
+                    </div>
+                    <div class="min-w-0">
+                        <div class="flex items-center gap-1.5">
+                            <span class="px-1.5 py-0.2 rounded bg-neutral-800 text-galo-gold font-bold text-[11px]">${esc(m.pos)}</span>
+                            <span class="font-bold text-xs text-white group-hover:text-galo-gold transition truncate">${esc(m.name)}</span>
+                            <span class="text-[11px] text-slate-300">(${m.age}a)</span>
+                            ${isStar ? '<span class="text-[10px] bg-purple-600/40 text-purple-200 px-1 rounded font-bold">ELITE</span>' : ''}
+                        </div>
+                        <div class="flex flex-wrap items-center gap-1.5 mt-0.5 text-[11px]">
+                            <span class="text-slate-200 font-medium">${esc(m.club || 'Mercado')}</span>
+                            <span class="text-slate-500">•</span>
+                            <span class="${isFree ? 'text-emerald-400 font-semibold' : 'text-amber-300'}">${esc(m.contract)}</span>
+                            <span class="text-slate-500">•</span>
+                            <span class="text-galo-gold font-bold">DNA ${dna}</span>
+                        </div>
+                        <p class="text-[11px] text-slate-300 truncate mt-0.5">Salário: R$ ${m.salario}k/mês • ${m.anosContrato}a contrato ${paybackMonths ? `• Payback Mkt: ${paybackMonths}m` : ''}</p>
+                    </div>
+                </div>
+
+                <div class="text-right shrink-0 flex flex-col items-end gap-1">
+                    <span class="font-display text-xs font-bold text-white">${formatBRL(m.cost)}</span>
+                    ${m.mktAnnual ? `<span class="text-[10px] text-emerald-400 font-semibold">+${formatBRL(m.mktAnnual)}/ano mkt</span>` : ''}
+                    <div class="flex items-center gap-1">
+                        <button onclick="openPlayerDetails('${esc(m.id)}')" class="px-2 py-1 rounded text-[11px] font-bold bg-neutral-800 hover:bg-neutral-700 text-slate-200 hover:text-white border border-galo-border transition">
+                            Detalhes
+                        </button>
+                        <button onclick="toggleSign('${esc(m.id)}')" class="px-2.5 py-1 rounded text-[11px] font-bold transition ${
+                            m.signed 
+                            ? 'bg-red-500/20 text-red-300 border border-red-500/40 hover:bg-red-500/30' 
+                            : (isStar ? 'bg-purple-600 hover:bg-purple-500 text-white' : 'bg-galo-gold hover:bg-galo-goldBright text-black')
+                        }">
+                            ${m.signed ? 'Desfazer' : 'Contratar'}
+                        </button>
+                    </div>
+                </div>
+            </div>`;
+        }
+
+        function renderLeftColumn() {
+            renderDynamicShortages();
+
+            // 1. Realistic SAF Targets sorted by live DNA Galo Score
+            const mContainer = document.getElementById('marketCardsList');
+            const filteredMarket = marketTargets
+                .filter(m => currentPosFilter === 'ALL' || m.pos === currentPosFilter)
+                .sort((a, b) => computeDnaScore(b) - computeDnaScore(a));
+            mContainer.innerHTML = filteredMarket.map(m => renderTargetCard(m)).join('') || `<p class="text-center text-xs text-slate-400 py-6">Nenhum alvo nesta posição.</p>`;
+
+            // 2. World Elite Scout
+            renderWorldScout();
+
+            // 3. Outgoing Cards sorted by Fan Rejection (Rejeição da Torcida)
+            const oContainer = document.getElementById('outgoingCardsList');
+            const filteredOut = outgoingList
+                .filter(o => currentPosFilter === 'ALL' || o.pos === currentPosFilter)
+                .sort((a, b) => b.rejeicaoTorcida - a.rejeicaoTorcida);
+
+            oContainer.innerHTML = filteredOut.map(o => `
+                <div class="bg-galo-card border border-galo-border rounded-lg p-2.5 flex items-center justify-between gap-2 ${o.sold ? 'opacity-55' : ''}">
+                    <div role="button" tabindex="0" onclick="openPlayerDetails('${esc(o.id)}')" onkeydown="if(event.key==='Enter')openPlayerDetails('${esc(o.id)}')" class="flex items-center gap-2.5 cursor-pointer group min-w-0">
+                        ${getPlayerAvatarHTML(o, 'w-9 h-9 border border-neutral-700 group-hover:border-galo-gold shrink-0')}
+                        <div class="min-w-0">
+                            <div class="flex items-center gap-1.5">
+                                <span class="px-1.5 py-0.2 rounded bg-neutral-800 text-slate-200 font-bold text-[11px]">${esc(o.pos)}</span>
+                                <span class="font-bold text-xs text-white group-hover:text-galo-gold transition truncate">${esc(o.name)}</span>
+                                <span class="text-[11px] text-slate-300">(${o.age}a)</span>
+                            </div>
+                            <span class="text-[11px] text-slate-300 block truncate">${esc(o.type)} • Rejeição: <strong class="${o.rejeicaoTorcida >= 75 ? 'text-red-400' : 'text-amber-300'}">${o.rejeicaoTorcida}%</strong> • R$ ${o.salario}k/mês</span>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-1.5 shrink-0">
+                        <span class="font-display text-xs font-bold text-emerald-400 mr-1">+${formatBRL(o.fee)}</span>
+                        <button onclick="openPlayerDetails('${esc(o.id)}')" class="px-2 py-1 rounded text-[11px] font-bold bg-neutral-800 hover:bg-neutral-700 text-slate-200 hover:text-white border border-galo-border transition">
+                            Detalhes
+                        </button>
+                        <button onclick="toggleOutgoing('${esc(o.id)}')" class="px-2.5 py-1 rounded text-[11px] font-bold transition ${
+                            o.sold 
+                            ? 'bg-emerald-500/20 text-emerald-300 border border-emerald-500/40' 
+                            : 'bg-neutral-800 hover:bg-neutral-700 text-white border border-galo-border'
+                        }">
+                            ${o.sold ? 'Liberado' : 'Negociar'}
+                        </button>
+                    </div>
+                </div>
+            `).join('');
+
+            const vitao = initialRetained.find(p => p.isVitao);
+            document.getElementById('vitaoPhotoWrap').innerHTML = getPlayerAvatarHTML(vitao, 'w-full h-full');
+        }
+
+        function renderWorldScout() {
+            const wContainer = document.getElementById('worldCardsList');
+            if (!wContainer) return;
+            const query = (document.getElementById('tmGlobalSearchInput')?.value || '').trim().toLowerCase();
+            const filtered = worldEliteTargets
+                .filter(m => {
+                    const posOk = currentPosFilter === 'ALL' || m.pos === currentPosFilter;
+                    const textOk = !query || m.name.toLowerCase().includes(query) || (m.club || '').toLowerCase().includes(query) || (m.league || '').toLowerCase().includes(query);
+                    return posOk && textOk;
+                })
+                .sort((a, b) => computeDnaScore(b) - computeDnaScore(a));
+
+            wContainer.innerHTML = filtered.map(m => renderTargetCard(m)).join('') || `
+                <div class="text-center py-6 space-y-2">
+                    <p class="text-xs text-slate-300">Jogador não encontrado na lista pré-carregada.</p>
+                    <button onclick="quickAddFromSearch()" class="px-3 py-1.5 rounded-lg bg-galo-gold text-black font-bold text-xs">
+                        + Cadastrar "${esc(document.getElementById('tmGlobalSearchInput').value)}"
+                    </button>
+                </div>`;
+        }
+
+        function quickAddFromSearch() {
+            const q = (document.getElementById('tmGlobalSearchInput')?.value || '').trim();
+            openAddRumorModal();
+            if (q) document.getElementById('rumorName').value = q;
+        }
+
+        // ============================================================
+        // 7. EA FC PITCH RENDERING (NO MUTATION ON SALE + REAL COHESION)
+        // ============================================================
+        function renderEAFCPitch() {
+            const container = document.getElementById('eafcCardsContainer');
+            const activeSquad = getActiveSquad();
+            const slots = lineups[currentFormation];
+
+            let sumOvr = 0, sumDna = 0, valid = 0, newCount = 0, roleMatches = 0;
+
+            container.innerHTML = slots.map((slot, idx) => {
+                // Resolve dynamically against activeSquad so selling/undoing Vitão never corrupts lineups
+                const p = activeSquad.find(item => item.id === slot.playerId);
+                if (p) {
+                    sumOvr += p.ovr;
+                    sumDna += computeDnaScore(p);
+                    valid++;
+                    if (p.isNew) newCount++;
+                    if (slot.allowed.includes(p.pos)) roleMatches++;
+                }
+
+                if (!p) {
+                    return `
+                    <div role="button" tabindex="0" onclick="openPickerModal(${idx})" onkeydown="if(event.key==='Enter')openPickerModal(${idx})" style="left:${slot.x}%; top:${slot.y}%;" 
+                         class="fut-card absolute -translate-x-1/2 -translate-y-1/2 w-[72px] sm:w-[86px] h-[98px] sm:h-[114px] cursor-pointer flex flex-col items-center justify-center p-1 text-center">
+                        <span class="text-galo-gold text-xl font-bold">+</span>
+                        <span class="font-fut text-xs font-bold text-white uppercase">${esc(slot.label)}</span>
+                        <span class="text-[10px] text-slate-300">Escalar</span>
+                    </div>`;
+                }
+
+                const cardTheme = p.isStar ? 'fut-card-star' : (p.isNew ? 'fut-card-new' : '');
+                const dna = computeDnaScore(p);
+                return `
+                <div role="button" tabindex="0" onclick="openPickerModal(${idx})" onkeydown="if(event.key==='Enter')openPickerModal(${idx})" style="left:${slot.x}%; top:${slot.y}%;" 
+                     class="fut-card ${cardTheme} absolute -translate-x-1/2 -translate-y-1/2 w-[74px] sm:w-[88px] h-[100px] sm:h-[118px] cursor-pointer flex flex-col justify-between p-1 sm:p-1.5 select-none">
+                    
+                    <div class="flex items-start justify-between relative">
+                        <div class="flex flex-col items-center leading-none z-10 pl-0.5 pt-0.5">
+                            <span class="font-fut text-sm sm:text-[15px] font-extrabold ${p.isStar ? 'text-fuchsia-300' : (p.isNew ? 'text-galo-goldBright' : 'text-white')}">${p.ovr}</span>
+                            <span class="font-fut text-[9px] sm:text-[10px] font-bold text-galo-gold uppercase">${esc(p.pos)}</span>
+                            <img src="https://ssl.gstatic.com/onebox/media/sports/logos/optimized/q9fhEsgpuyRq58OgmSndcQ_500x500.png" alt="CAM" class="w-3 h-3 sm:w-3.5 sm:h-3.5 object-contain mt-0.5" onerror="this.style.display='none'">
+                        </div>
+                        <div class="w-9 h-9 sm:w-11 sm:h-11 rounded-full overflow-hidden border border-white/25 -mr-0.5 mt-0.5 shrink-0 bg-neutral-900">
+                            ${getPlayerAvatarHTML(p, 'w-full h-full')}
+                        </div>
+                    </div>
+
+                    <div class="text-center border-y border-white/15 py-0.5 my-0.5">
+                        <div class="font-fut text-[10px] sm:text-[11px] font-bold text-white uppercase truncate tracking-tight leading-none">${esc(p.name)}</div>
+                    </div>
+
+                    <div class="grid grid-cols-3 text-center font-fut text-[8px] sm:text-[9px] leading-tight pb-0.5">
+                        <div><span class="font-bold text-white">${p.pac}</span> <span class="text-slate-300">RIT</span></div>
+                        <div><span class="font-bold text-white">${p.phy}</span> <span class="text-slate-300">FÍS</span></div>
+                        <div><span class="font-bold text-amber-400">${dna}</span> <span class="text-amber-300">DNA</span></div>
+                    </div>
+                </div>
+                `;
+            }).join('');
+
+            const avgOvr = valid ? Math.round(sumOvr / valid) : 0;
+            const avgDna = valid ? Math.round(sumDna / valid) : 0;
+            // Real Tactical Cohesion: penalizes out-of-position players (-9% each) and excess brand-new starters (-2% above 4 newcomers)
+            const outOfPosPenalty = (valid - roleMatches) * 9;
+            const newcomerPenalty = Math.max(0, newCount - 4) * 2;
+            const cohesion = valid === 0 ? 0 : Math.max(40, Math.min(100, Math.round((valid / 11) * 100 - outOfPosPenalty - newcomerPenalty)));
+
+            document.getElementById('eafcOvr').textContent = avgOvr;
+            document.getElementById('eafcDna').textContent = avgDna;
+            document.getElementById('eafcCohesion').textContent = `${cohesion}%`;
+            document.getElementById('eafcNewCount').textContent = `${newCount}/11`;
+        }
+
+        // ============================================================
+        // 8. SIGNING, SELLING & SLOT INDEX RESTORATION (BUGS FIXED)
+        // ============================================================
+        function switchWorkspaceMode(mode) {
+            const isSquad = mode === 'squad';
+            document.getElementById('workspaceSquad').classList.toggle('hidden', !isSquad);
+            document.getElementById('workspaceBi').classList.toggle('hidden', isSquad);
+
+            document.getElementById('modeSquadBtn').className = isSquad
+                ? 'px-3.5 py-1.5 rounded-lg font-display text-xs uppercase tracking-wider font-bold bg-white text-black transition'
+                : 'px-3.5 py-1.5 rounded-lg font-display text-xs uppercase tracking-wider font-bold text-slate-300 hover:text-white transition';
+
+            document.getElementById('modeBiBtn').className = !isSquad
+                ? 'px-3.5 py-1.5 rounded-lg font-display text-xs uppercase tracking-wider font-bold bg-white text-black transition flex items-center gap-1.5'
+                : 'px-3.5 py-1.5 rounded-lg font-display text-xs uppercase tracking-wider font-bold text-slate-300 hover:text-white transition flex items-center gap-1.5';
+
+            if (!isSquad) renderBiAnalytics();
+        }
+
+        function switchLeftTab(tab) {
+            const views = { market: 'viewMarket', world: 'viewWorld', outgoing: 'viewOutgoing' };
+            const btns = { market: 'tabMarketBtn', world: 'tabWorldBtn', outgoing: 'tabOutgoingBtn' };
+
+            Object.keys(views).forEach(k => {
+                const active = k === tab;
+                document.getElementById(views[k]).classList.toggle('hidden', !active);
+                document.getElementById(btns[k]).className = active
+                    ? 'py-2 px-2 rounded-lg font-display text-xs uppercase tracking-wider font-bold bg-galo-gold text-black flex items-center justify-center gap-1.5 transition'
+                    : 'py-2 px-2 rounded-lg font-display text-xs uppercase tracking-wider font-bold text-slate-300 hover:text-white flex items-center justify-center gap-1.5 transition';
+            });
+        }
+
+        function toggleSign(id) {
+            const m = getAllMarketPool().find(item => item.id === id);
+            if (!m) return;
+            m.signed = !m.signed;
+
+            if (m.signed) {
+                const slots = lineups[currentFormation];
+                // Find a slot matching role that does NOT already hold another newly signed player
+                const emptyOrRetainedSlot = slots.find(s => {
+                    if (!s.allowed.includes(m.pos)) return false;
+                    const occupant = getAllMarketPool().find(x => x.id === s.playerId && x.signed);
+                    return !occupant;
+                });
+
+                if (emptyOrRetainedSlot) {
+                    emptyOrRetainedSlot.playerId = m.id;
+                    showToast(`${m.name} contratado e escalado em ${emptyOrRetainedSlot.label}.`);
+                } else {
+                    showToast(`${m.name} contratado para o elenco! Vaga titular já ocupada por reforço — clique na carta para alternar.`);
+                }
+            } else {
+                // Exact slot index restoration across all formations
+                Object.entries(lineups).forEach(([fname, arr]) => {
+                    arr.forEach((s, i) => {
+                        if (s.playerId === m.id) {
+                            s.playerId = formations[fname][i].playerId;
+                        }
+                    });
+                });
+                showToast(`Contratação de ${m.name} desfeita.`);
+            }
+            refreshAll();
+        }
+
+        function toggleOutgoing(id) {
+            const o = outgoingList.find(item => item.id === id);
+            if (!o) return;
+            o.sold = !o.sold;
+            showToast(o.sold ? `${o.name} negociado (+${formatBRL(o.fee)} no caixa, -R$ ${o.salario}k/mês na folha).` : `${o.name} mantido no elenco.`);
+            refreshAll();
+        }
+
+        function executeAllBarca() {
+            outgoingList.forEach(o => o.sold = true);
+            showToast('Toda a barca negociada! Caixa e Fair Play atualizados.');
+            refreshAll();
+        }
+
+        function toggleVitaoSale() {
+            vitaoSold = !vitaoSold;
+            const btn = document.getElementById('vitaoActionBtn');
+            if (vitaoSold) {
+                btn.textContent = 'Desfazer Venda';
+                btn.className = 'px-2.5 py-1.5 rounded-lg text-xs font-bold bg-neutral-700 text-white shrink-0';
+                showToast('Vitão vendido para a Europa (+R$ 45,0M no caixa). Slot liberado no campo.');
+            } else {
+                btn.textContent = 'Vender (+45M)';
+                btn.className = 'px-2.5 py-1.5 rounded-lg text-xs font-bold bg-purple-600 hover:bg-purple-500 text-white shrink-0';
+                showToast('Vitão reintegrado ao elenco e restaurado na escalação.');
+            }
+            refreshAll();
+        }
+
+        function changeFormation() {
+            currentFormation = document.getElementById('formationSelect').value;
+            renderEAFCPitch();
+        }
+
+        function openPickerModal(slotIdx) {
+            activeSlotIndex = slotIdx;
+            const slot = lineups[currentFormation][slotIdx];
+            const activeSquad = getActiveSquad();
+
+            document.getElementById('pickerTitle').textContent = `Escalar Posição: ${slot.label}`;
+
+            const sorted = [...activeSquad].sort((a, b) => {
+                const aMatch = slot.allowed.includes(a.pos) ? 1 : 0;
+                const bMatch = slot.allowed.includes(b.pos) ? 1 : 0;
+                if (aMatch !== bMatch) return bMatch - aMatch;
+                return (b.ovr + computeDnaScore(b) * 0.3) - (a.ovr + computeDnaScore(a) * 0.3);
+            });
+
+            document.getElementById('pickerList').innerHTML = sorted.map(p => {
+                const isCurrent = slot.playerId === p.id;
+                const dna = computeDnaScore(p);
+                return `
+                <div class="flex items-center justify-between p-2 rounded-lg border transition ${
+                    isCurrent ? 'bg-galo-gold/20 border-galo-gold' : 'bg-galo-card border-galo-border hover:border-galo-gold/60'
+                }">
+                    <div role="button" tabindex="0" onclick="selectPlayerForSlot('${esc(p.id)}')" onkeydown="if(event.key==='Enter')selectPlayerForSlot('${esc(p.id)}')" class="flex items-center gap-2 min-w-0 flex-1 cursor-pointer">
+                        ${getPlayerAvatarHTML(p, 'w-9 h-9 border border-neutral-700 shrink-0')}
+                        <div class="min-w-0">
+                            <div class="flex items-center gap-1">
+                                <span class="text-[11px] font-bold px-1 rounded bg-black text-galo-gold">${esc(p.pos)}</span>
+                                <span class="text-xs font-bold text-white truncate">${esc(p.fullName || p.name)}</span>
+                            </div>
+                            <span class="text-[11px] text-amber-300 font-semibold">DNA ${dna} ${p.isNew ? '• Reforço' : ''}</span>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-1.5 pl-2 shrink-0">
+                        <button onclick="openPlayerDetails('${esc(p.id)}')" class="px-2 py-1 rounded text-[11px] font-bold bg-black hover:bg-neutral-800 text-slate-200 hover:text-white border border-galo-border">
+                            Detalhes
+                        </button>
+                        <button onclick="selectPlayerForSlot('${esc(p.id)}')" class="font-fut text-base font-bold text-galo-gold px-1">${p.ovr}</button>
+                    </div>
+                </div>
+                `;
+            }).join('');
+
+            const modal = document.getElementById('pickerModal');
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+        }
+
+        function closePickerModal() {
+            document.getElementById('pickerModal').classList.add('hidden');
+            document.getElementById('pickerModal').classList.remove('flex');
+        }
+
+        function selectPlayerForSlot(playerId) {
+            if (activeSlotIndex === null) return;
+            const slots = lineups[currentFormation];
+            slots.forEach((s, i) => {
+                if (i !== activeSlotIndex && s.playerId === playerId) {
+                    s.playerId = null;
+                }
+            });
+            slots[activeSlotIndex].playerId = playerId;
+            closePickerModal();
+            refreshAll();
+        }
+
+        function autoBestXI() {
+            const activeSquad = getActiveSquad();
+            const slots = lineups[currentFormation];
+            const used = new Set();
+
+            slots.forEach(slot => {
+                const candidates = activeSquad
+                    .filter(p => !used.has(p.id) && slot.allowed.includes(p.pos))
+                    .sort((a, b) => (b.ovr * 1.3 + computeDnaScore(b)) - (a.ovr * 1.3 + computeDnaScore(a)));
+
+                if (candidates.length) {
+                    slot.playerId = candidates[0].id;
+                    used.add(candidates[0].id);
+                }
+            });
+            showToast('Melhor XI escalado combinando Overall e DNA Galo Score.');
+            refreshAll();
+        }
+
+        // ============================================================
+        // 9. BI ANALYTICS CHARTS (MATRIZ DA BARCA, WATERFALL, GAUGE, PYRAMID, SCATTER, PAYBACK)
+        // ============================================================
+        function onDnaWeightChange() {
+            dnaWeights = {
+                intensity: parseInt(document.getElementById('weightIntensity').value) || 0,
+                identity: parseInt(document.getElementById('weightIdentity').value) || 0,
+                clutch: parseInt(document.getElementById('weightClutch').value) || 0,
+                availability: parseInt(document.getElementById('weightAvailability').value) || 0,
+                value: parseInt(document.getElementById('weightValue').value) || 0
+            };
+            document.getElementById('wValInt').textContent = `${dnaWeights.intensity}%`;
+            document.getElementById('wValId').textContent = `${dnaWeights.identity}%`;
+            document.getElementById('wValDec').textContent = `${dnaWeights.clutch}%`;
+            document.getElementById('wValDisp').textContent = `${dnaWeights.availability}%`;
+            document.getElementById('wValCost').textContent = `${dnaWeights.value}%`;
+
+            renderTopDnaRanking();
+            renderLeftColumn();
+            renderEAFCPitch();
+        }
+
+        function resetDnaWeights() {
+            document.getElementById('weightIntensity').value = 30;
+            document.getElementById('weightIdentity').value = 25;
+            document.getElementById('weightClutch').value = 20;
+            document.getElementById('weightAvailability').value = 15;
+            document.getElementById('weightValue').value = 10;
+            onDnaWeightChange();
+        }
+
+        function renderTopDnaRanking() {
+            const container = document.getElementById('topDnaRanking');
+            if (!container) return;
+            const top3 = getAllMarketPool()
+                .map(p => ({ ...p, dna: computeDnaScore(p) }))
+                .sort((a, b) => b.dna - a.dna)
+                .slice(0, 3);
+
+            container.innerHTML = top3.map((p, idx) => `
+                <div class="flex items-center justify-between bg-black/70 border border-galo-border rounded-lg px-2.5 py-1.5">
+                    <span><strong class="text-galo-gold">#${idx + 1} ${esc(p.name)}</strong> (${esc(p.pos)} • ${formatBRL(p.cost)})</span>
+                    <span class="font-fut font-bold text-sm text-emerald-400">DNA ${p.dna}</span>
+                </div>
+            `).join('');
+        }
+
+        function renderBarcaMatrix() {
+            const container = document.getElementById('barcaMatrixChart');
+            if (!container) return;
+
+            const allSquad = [
+                ...retainedSquad.map(p => ({ ...p, isOutgoing: false })),
+                ...outgoingList.map(o => ({ ...o, isOutgoing: true }))
+            ];
+
+            const w = 640, h = 290, padL = 44, padR = 20, padT = 18, padB = 34;
+            const innerW = w - padL - padR;
+            const innerH = h - padT - padB;
+
+            // X: Desempenho (OVR 68..86), Y: Rejeição da Torcida (0..100%)
+            const xScale = ovr => padL + Math.max(0, Math.min(1, (ovr - 68) / 18)) * innerW;
+            const yScale = rej => padT + (1 - Math.max(0, Math.min(100, rej)) / 100) * innerH;
+
+            const midX = xScale(77);
+            const midY = yScale(50);
+
+            const bubbles = allSquad.map(p => {
+                const cx = xScale(p.ovr);
+                const cy = yScale(p.rejeicaoTorcida || 15);
+                const r = Math.max(6, Math.min(20, 5 + (p.valorMercado || 10) * 0.32));
+                const color = p.rejeicaoTorcida >= 50
+                    ? (p.ovr < 77 ? '#EF4444' : '#F59E0B')
+                    : (p.ovr >= 78 ? '#10B981' : '#3B82F6');
+
+                return `
+                    <g class="cursor-pointer" onclick="openPlayerDetails('${esc(p.id)}')">
+                        <circle cx="${cx.toFixed(1)}" cy="${cy.toFixed(1)}" r="${r.toFixed(1)}" fill="${color}" fill-opacity="0.72" stroke="#FFFFFF" stroke-width="1"/>
+                        <text x="${cx.toFixed(1)}" y="${(cy - r - 3).toFixed(1)}" fill="#F8FAFC" font-size="9" font-weight="700" text-anchor="middle">${esc(p.name)}</text>
+                        <title>${esc(p.name)} • OVR ${p.ovr} • Rejeição ${p.rejeicaoTorcida}% • Valor R$ ${p.valorMercado}M</title>
+                    </g>`;
+            }).join('');
+
+            container.innerHTML = `
+                <svg viewBox="0 0 ${w} ${h}" class="w-full h-auto bg-black/60 rounded-xl border border-galo-border">
+                    <!-- Quadrant Tints -->
+                    <rect x="${padL}" y="${padT}" width="${midX - padL}" height="${midY - padT}" fill="#EF4444" fill-opacity="0.08"/>
+                    <rect x="${midX}" y="${padT}" width="${w - padR - midX}" height="${midY - padT}" fill="#F59E0B" fill-opacity="0.08"/>
+                    <rect x="${padL}" y="${midY}" width="${midX - padL}" height="${h - padB - midY}" fill="#3B82F6" fill-opacity="0.06"/>
+                    <rect x="${midX}" y="${midY}" width="${w - padR - midX}" height="${h - padB - midY}" fill="#10B981" fill-opacity="0.08"/>
+
+                    <!-- Quadrant Labels -->
+                    <text x="${padL + 8}" y="${padT + 14}" fill="#FCA5A5" font-size="10" font-weight="700">VENDER AGORA (Baixo OVR + Alta Rejeição)</text>
+                    <text x="${w - padR - 8}" y="${padT + 14}" fill="#FCD34D" font-size="10" font-weight="700" text-anchor="end">NEGOCIAR / RECUPERAR</text>
+                    <text x="${padL + 8}" y="${h - padB - 8}" fill="#93C5FD" font-size="10" font-weight="700">EMPRESTAR / BASE</text>
+                    <text x="${w - padR - 8}" y="${h - padB - 8}" fill="#6EE7B7" font-size="10" font-weight="700" text-anchor="end">MANTER / RENOVAR</text>
+
+                    <!-- Axes & Midlines -->
+                    <line x1="${midX}" y1="${padT}" x2="${midX}" y2="${h - padB}" stroke="#475569" stroke-dasharray="4 4"/>
+                    <line x1="${padL}" y1="${midY}" x2="${w - padR}" y2="${midY}" stroke="#475569" stroke-dasharray="4 4"/>
+                    <line x1="${padL}" y1="${h - padB}" x2="${w - padR}" y2="${h - padB}" stroke="#64748B"/>
+                    <line x1="${padL}" y1="${padT}" x2="${padL}" y2="${h - padB}" stroke="#64748B"/>
+
+                    <text x="${w / 2}" y="${h - 8}" fill="#CBD5E1" font-size="10" font-weight="600" text-anchor="middle">Desempenho Técnico (OVR 68 → 86)</text>
+                    <text x="14" y="${h / 2}" fill="#CBD5E1" font-size="10" font-weight="600" text-anchor="middle" transform="rotate(-90 14 ${h / 2})">Rejeição Torcida (%)</text>
+
+                    ${bubbles}
+                </svg>
+            `;
+        }
+
+        function renderWaterfallChart() {
+            const container = document.getElementById('waterfallChart');
+            if (!container) return;
+            const fm = getFinancialMetrics();
+            const items = [
+                { label: 'Inicial', val: fm.baseCash, color: '#94A3B8' },
+                { label: 'Vendas', val: fm.totalSales, color: '#10B981' },
+                { label: 'Compras', val: -fm.acquisitionSpend, color: '#EF4444' },
+                { label: 'Saldo', val: fm.cashBalance, color: fm.cashBalance >= 0 ? '#EAB308' : '#EF4444' }
+            ];
+            const maxAbs = Math.max(80, ...items.map(i => Math.abs(i.val)), fm.baseCash + fm.totalSales);
+
+            container.innerHTML = `
+                <div class="grid grid-cols-4 gap-2 items-end h-40 pt-4 px-2 bg-black/50 rounded-xl border border-galo-border">
+                    ${items.map(it => {
+                        const heightPct = Math.max(8, Math.round((Math.abs(it.val) / maxAbs) * 100));
+                        return `
+                        <div class="flex flex-col items-center justify-end h-full">
+                            <span class="text-[10px] font-bold text-white mb-1">${it.val >= 0 ? '' : '-'}${formatBRL(Math.abs(it.val)).replace('R$ ', '')}</span>
+                            <div style="height:${heightPct}%; background:${it.color};" class="w-10 rounded-t transition-all"></div>
+                            <span class="text-[10px] text-slate-300 font-semibold py-1.5">${it.label}</span>
+                        </div>`;
+                    }).join('')}
+                </div>
+            `;
+        }
+
+        function renderPayrollGauge() {
+            const container = document.getElementById('payrollGaugeChart');
+            if (!container) return;
+            const fm = getFinancialMetrics();
+            const pct = Math.min(100, fm.fairPlayPct);
+            const ok = fm.fairPlayPct <= 70;
+
+            container.innerHTML = `
+                <div class="bg-black/50 rounded-xl border border-galo-border p-3.5 space-y-3 h-40 flex flex-col justify-center">
+                    <div class="flex justify-between items-baseline">
+                        <span class="font-display text-2xl font-bold ${ok ? 'text-emerald-400' : 'text-red-400'}">${fm.fairPlayPct.toFixed(1).replace('.', ',')}%</span>
+                        <span class="text-xs text-slate-300">Limite CBF: <strong class="text-white">70,0%</strong></span>
+                    </div>
+                    <div class="w-full h-4 bg-neutral-800 rounded-full overflow-hidden relative">
+                        <div style="width:${pct}%" class="h-full ${ok ? 'bg-emerald-500' : 'bg-red-500'} transition-all"></div>
+                        <div style="left:70%" class="absolute top-0 bottom-0 w-0.5 bg-white" title="Limite 70%"></div>
+                    </div>
+                    <div class="grid grid-cols-2 gap-2 text-[11px] text-slate-300">
+                        <div>Salários/Ano: <strong class="text-white">${formatBRL(fm.annualSalariesM)}</strong></div>
+                        <div>Amortização: <strong class="text-white">${formatBRL(75 + fm.newAmortizationM)}</strong></div>
+                    </div>
+                </div>
+            `;
+        }
+
+        function renderAgePyramid() {
+            const container = document.getElementById('agePyramidChart');
+            if (!container) return;
+            const active = getActiveSquad();
+            const starters = lineups[currentFormation].map(s => active.find(p => p.id === s.playerId)).filter(Boolean);
+
+            const u23 = starters.filter(p => p.age <= 23).length;
+            const prime = starters.filter(p => p.age >= 24 && p.age <= 29).length;
+            const vet = starters.filter(p => p.age >= 30).length;
+            const avgAge = starters.length ? (starters.reduce((a, b) => a + b.age, 0) / starters.length).toFixed(1) : '0';
+
+            const rows = [
+                { label: 'Base / Jovens (≤23)', count: u23, color: 'bg-sky-400' },
+                { label: 'Auge Físico (24–29)', count: prime, color: 'bg-emerald-400' },
+                { label: 'Liderança (30+)',     count: vet, color: 'bg-galo-gold' }
+            ];
+
+            container.innerHTML = `
+                <div class="bg-black/50 rounded-xl border border-galo-border p-3.5 space-y-2.5 h-40 flex flex-col justify-center">
+                    <div class="flex justify-between text-xs">
+                        <span class="text-slate-300">Média Etária Titular:</span>
+                        <strong class="text-white font-display text-sm">${avgAge} anos</strong>
+                    </div>
+                    ${rows.map(r => `
+                        <div>
+                            <div class="flex justify-between text-[11px] mb-0.5">
+                                <span class="text-slate-200">${r.label}</span>
+                                <span class="font-bold text-white">${r.count} atletas</span>
+                            </div>
+                            <div class="w-full h-2.5 bg-neutral-800 rounded-full overflow-hidden">
+                                <div style="width:${(r.count / 11) * 100}%" class="h-full ${r.color}"></div>
+                            </div>
+                        </div>
+                    `).join('')}
+                </div>
+            `;
+        }
+
+        function renderValueScatter() {
+            const container = document.getElementById('valueScatterChart');
+            if (!container) return;
+            const pool = getAllMarketPool();
+            const w = 520, h = 230, padL = 42, padR = 16, padT = 16, padB = 30;
+            const xScale = cost => padL + Math.min(1, cost / 90) * (w - padL - padR);
+            const yScale = ovr => padT + (1 - Math.max(0, Math.min(1, (ovr - 78) / 11))) * (h - padT - padB);
+
+            const dots = pool.map(p => {
+                const cx = xScale(p.cost);
+                const cy = yScale(p.ovr);
+                const fill = p.signed ? '#EAB308' : (p.isStar ? '#D946EF' : '#38BDF8');
+                return `
+                    <g class="cursor-pointer" onclick="openPlayerDetails('${esc(p.id)}')">
+                        <circle cx="${cx.toFixed(1)}" cy="${cy.toFixed(1)}" r="6" fill="${fill}" stroke="#FFF" stroke-width="1"/>
+                        <text x="${cx.toFixed(1)}" y="${(cy - 8).toFixed(1)}" fill="#E2E8F0" font-size="8.5" text-anchor="middle">${esc(p.name.split(' ')[0])}</text>
+                    </g>`;
+            }).join('');
+
+            container.innerHTML = `
+                <svg viewBox="0 0 ${w} ${h}" class="w-full h-auto bg-black/50 rounded-xl border border-galo-border">
+                    <line x1="${padL}" y1="${h - padB}" x2="${w - padR}" y2="${h - padB}" stroke="#64748B"/>
+                    <line x1="${padL}" y1="${padT}" x2="${padL}" y2="${h - padB}" stroke="#64748B"/>
+                    <text x="${w / 2}" y="${h - 7}" fill="#CBD5E1" font-size="9.5" text-anchor="middle">Custo de Aquisição (R$ 0M → 90M)</text>
+                    <text x="13" y="${h / 2}" fill="#CBD5E1" font-size="9.5" text-anchor="middle" transform="rotate(-90 13 ${h / 2})">OVR (78 → 89)</text>
+                    ${dots}
+                </svg>
+            `;
+        }
+
+        function renderPaybackChart() {
+            const container = document.getElementById('paybackChart');
+            if (!container) return;
+            const stars = worldEliteTargets
+                .filter(p => p.mktAnnual > 0)
+                .map(p => ({
+                    ...p,
+                    months: Math.round(p.cost / (p.mktAnnual / 12))
+                }))
+                .sort((a, b) => a.months - b.months)
+                .slice(0, 6);
+
+            container.innerHTML = stars.map(s => {
+                const barPct = Math.min(100, (s.months / 36) * 100);
+                const good = s.months <= 15;
+                return `
+                <div class="bg-black/50 border border-galo-border rounded-lg px-3 py-2">
+                    <div class="flex justify-between text-xs mb-1">
+                        <span class="font-bold text-white">${esc(s.name)} <span class="text-slate-400 font-normal">(Custo ${formatBRL(s.cost)} | Mkt +${formatBRL(s.mktAnnual)}/ano)</span></span>
+                        <span class="font-display font-bold ${good ? 'text-emerald-400' : 'text-amber-300'}">${s.months} meses</span>
+                    </div>
+                    <div class="w-full h-2 bg-neutral-800 rounded-full overflow-hidden">
+                        <div style="width:${barPct}%" class="h-full ${good ? 'bg-emerald-500' : 'bg-purple-500'}"></div>
+                    </div>
+                </div>`;
+            }).join('');
+        }
+
+        function renderBiAnalytics() {
+            renderTopDnaRanking();
+            renderBarcaMatrix();
+            renderWaterfallChart();
+            renderPayrollGauge();
+            renderAgePyramid();
+            renderValueScatter();
+            renderPaybackChart();
+        }
+
+        // ============================================================
+        // 10. PLAYER DETAILS & HONESTLY LABELED STATS (SIMULATED OR CSV)
+        // ============================================================
+        function findAnyPlayerById(id) {
+            return retainedSquad.find(p => p.id === id)
+                || outgoingList.find(p => p.id === id)
+                || marketTargets.find(p => p.id === id)
+                || worldEliteTargets.find(p => p.id === id);
+        }
+
+        function generatePlayerStats(p) {
+            const csvRow = customCsvStats[p.name.toLowerCase()];
+            let hash = 0;
+            for (let i = 0; i < p.name.length; i++) hash = ((hash << 5) - hash) + p.name.charCodeAt(i);
+            const seed = Math.abs(hash);
+
+            const isYoung = p.age <= 21;
+            const games26 = csvRow ? csvRow.games : (isYoung ? (18 + (seed % 16)) : (36 + (seed % 21)));
+            const mins26 = csvRow ? csvRow.mins : (games26 * (isYoung ? 62 : 81));
+            const rating26 = csvRow ? csvRow.rating.toFixed(2) : (6.65 + ((p.ovr - 72) * 0.048) + ((seed % 15) / 100)).toFixed(2);
+
+            let goals26 = csvRow ? csvRow.goals : 0;
+            let assists26 = csvRow ? csvRow.assists : 0;
+            let extraLabel1 = 'Duelos Ganhos', extraVal1 = '58%', extraLabel2 = 'Passes Certos', extraVal2 = '85%';
+
+            if (p.pos === 'CA') {
+                if (!csvRow) { goals26 = Math.max(4, Math.round(games26 * (0.28 + ((p.ovr - 74) * 0.025)))); assists26 = Math.max(1, Math.round(games26 * 0.11)); }
+                extraLabel1 = 'Finaliz. Alvo'; extraVal1 = `${44 + (seed % 18)}%`;
+                extraLabel2 = 'Duelos Aéreos'; extraVal2 = `${52 + (seed % 20)}%`;
+            } else if (p.pos === 'MEI') {
+                if (!csvRow) { goals26 = Math.max(3, Math.round(games26 * (0.16 + ((p.ovr - 74) * 0.015)))); assists26 = Math.max(3, Math.round(games26 * (0.19 + ((p.ovr - 74) * 0.015)))); }
+                extraLabel1 = 'Passes Chave'; extraVal1 = `${(1.6 + ((p.ovr - 74) * 0.14)).toFixed(1)}/j`;
+                extraLabel2 = 'Dribles Certos'; extraVal2 = `${56 + (seed % 18)}%`;
+            } else if (p.pos === 'VOL') {
+                if (!csvRow) { goals26 = Math.max(1, Math.round(games26 * 0.08)); assists26 = Math.max(2, Math.round(games26 * 0.10)); }
+                extraLabel1 = 'Desarmes / Jogo'; extraVal1 = `${(2.4 + ((p.grinta - 78) * 0.09)).toFixed(1)}`;
+                extraLabel2 = 'Passes Certos'; extraVal2 = `${86 + (seed % 8)}%`;
+            } else if (p.pos === 'LD' || p.pos === 'LE') {
+                if (!csvRow) { goals26 = Math.max(1, Math.round(games26 * 0.06)); assists26 = Math.max(2, Math.round(games26 * 0.14)); }
+                extraLabel1 = 'Cruzamentos/j'; extraVal1 = `${(1.8 + (seed % 12) * 0.1).toFixed(1)}`;
+                extraLabel2 = 'Desarmes / Jogo'; extraVal2 = `${(2.1 + (seed % 11) * 0.1).toFixed(1)}`;
+            } else if (p.pos === 'ZAG') {
+                if (!csvRow) { goals26 = Math.max(1, Math.round(games26 * 0.06)); assists26 = Math.round(games26 * 0.02); }
+                extraLabel1 = 'Duelos Aéreos'; extraVal1 = `${63 + (seed % 16)}%`;
+                extraLabel2 = 'Cortes / Jogo'; extraVal2 = `${(4.2 + ((p.ovr - 74) * 0.18)).toFixed(1)}`;
+            } else {
+                extraLabel1 = 'Jogos s/ Gol'; extraVal1 = `${Math.round(games26 * 0.38)}`;
+                extraLabel2 = 'Defesas Dif.'; extraVal2 = `${42 + (seed % 25)}`;
+            }
+
+            const recentGames = Array.from({ length: 5 }, (_, i) => {
+                const base = parseFloat(rating26);
+                const delta = (((seed + i * 7) % 13) - 5) * 0.11;
+                const score = Math.min(9.4, Math.max(6.1, base + delta)).toFixed(1);
+                const results = ['V 2-0', 'E 1-1', 'V 3-1', 'V 1-0', 'D 1-2', 'V 2-1'];
+                return { res: results[(seed + i) % results.length], rating: score };
+            });
+
+            const profile = playerWikiMap[p.name];
+            const currentClub = p.club || profile?.club || 'Atlético-MG';
+            const history = [
+                { year: '2026', club: currentClub, games: games26, goals: goals26, assists: assists26, rating: rating26 },
+                { year: '2025', club: isYoung ? 'Atlético-MG Sub-20' : currentClub, games: Math.max(15, games26 - 4), goals: Math.max(0, goals26 - 2), assists: Math.max(0, assists26 - 1), rating: (parseFloat(rating26) - 0.12).toFixed(2) },
+                { year: '2024', club: isYoung ? 'Atlético-MG Sub-17/20' : currentClub, games: Math.max(12, games26 - 7), goals: Math.max(0, goals26 - 3), assists: Math.max(0, assists26 - 2), rating: (parseFloat(rating26) - 0.18).toFixed(2) }
+            ];
+
+            return { isCsv: !!csvRow, games26, mins26, goals26, assists26, rating26, extraLabel1, extraVal1, extraLabel2, extraVal2, recentGames, history, currentClub };
+        }
+
+        function openPlayerDetails(playerId) {
+            const p = findAnyPlayerById(playerId);
+            if (!p) return;
+            const stats = generatePlayerStats(p);
+
+            document.getElementById('detPhotoWrap').innerHTML = getPlayerAvatarHTML(p, 'w-full h-full');
+            document.getElementById('detPosBadge').textContent = p.pos;
+            document.getElementById('detName').textContent = p.fullName || p.name;
+            document.getElementById('detSub').textContent = `${stats.currentClub} • ${p.age} anos`;
+            document.getElementById('detOvr').textContent = p.ovr;
+            document.getElementById('detNote').textContent = p.note || 'Atleta monitorado pelo departamento de inteligência do Atlético-MG.';
+            document.getElementById('detDnaScore').textContent = computeDnaScore(p);
+            document.getElementById('detSalary').textContent = `R$ ${p.salario || 450}k/mês`;
+            document.getElementById('detContractEnd').textContent = p.fimContrato ? `Dez/${p.fimContrato}` : `${p.anosContrato || 3} anos`;
+
+            const badge = document.getElementById('detDataSourceBadge');
+            const heading = document.getElementById('detStatsHeading');
+            if (stats.isCsv) {
+                badge.textContent = 'CSV IMPORTADO';
+                badge.className = 'text-[10px] px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-300 border border-emerald-500/40 font-bold';
+                heading.textContent = 'Estatísticas 2026 (Fonte: CSV Importado pelo Usuário)';
+            } else {
+                badge.textContent = 'MODELO SIMULADO';
+                badge.className = 'text-[10px] px-2 py-0.5 rounded bg-amber-500/20 text-amber-300 border border-amber-500/40 font-bold';
+                heading.textContent = 'Projeção Estatística 2026 (Dados Simulados para Análise)';
+            }
+
+            const rejBadge = document.getElementById('detRejBadge');
+            if (p.rejeicaoTorcida !== undefined) {
+                rejBadge.classList.remove('hidden');
+                document.getElementById('detRej').textContent = `${p.rejeicaoTorcida}%`;
+            } else {
+                rejBadge.classList.add('hidden');
+            }
+
+            const cards = [
+                { label: 'Jogos 2026', val: stats.games26 },
+                { label: 'Minutos', val: `${stats.mins26}'` },
+                { label: 'Gols', val: stats.goals26 },
+                { label: 'Assistências', val: stats.assists26 },
+                { label: stats.extraLabel1, val: stats.extraVal1 },
+                { label: stats.extraLabel2, val: stats.extraVal2 }
+            ];
+
+            document.getElementById('detSeasonGrid').innerHTML = cards.map(c => `
+                <div class="bg-black/70 border border-galo-border rounded-lg p-2 text-center">
+                    <span class="text-[10px] text-slate-300 uppercase block truncate">${esc(c.label)}</span>
+                    <span class="font-display text-base font-bold text-white">${esc(c.val)}</span>
+                </div>
+            `).join('');
+
+            document.getElementById('detRecentForm').innerHTML = stats.recentGames.map((g, idx) => {
+                const rVal = parseFloat(g.rating);
+                const color = rVal >= 7.5 ? 'border-emerald-500/60 text-emerald-400 bg-emerald-950/30' : (rVal >= 6.9 ? 'border-galo-gold/50 text-galo-gold bg-amber-950/20' : 'border-neutral-700 text-slate-200 bg-black/50');
+                return `
+                <div class="border ${color} rounded-lg p-2 text-center">
+                    <span class="text-[10px] text-slate-300 block">J${idx + 1} (${esc(g.res)})</span>
+                    <span class="font-fut text-base font-extrabold">${esc(g.rating)}</span>
+                </div>`;
+            }).join('');
+
+            document.getElementById('detHistoryBody').innerHTML = stats.history.map(h => `
+                <tr class="hover:bg-white/5">
+                    <td class="py-2 px-3 font-bold text-galo-gold">${esc(h.year)}</td>
+                    <td class="py-2 px-3 text-white font-medium">${esc(h.club)}</td>
+                    <td class="py-2 px-2 text-center text-slate-200">${h.games}</td>
+                    <td class="py-2 px-2 text-center font-bold text-white">${h.goals}</td>
+                    <td class="py-2 px-2 text-center font-bold text-white">${h.assists}</td>
+                    <td class="py-2 px-3 text-right font-fut font-bold text-emerald-400">${esc(h.rating)}</td>
+                </tr>
+            `).join('');
+
+            const modal = document.getElementById('detailsModal');
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+        }
+
+        function closeDetailsModal() {
+            document.getElementById('detailsModal').classList.add('hidden');
+            document.getElementById('detailsModal').classList.remove('flex');
+        }
+
+        // ============================================================
+        // 11. CUSTOM PLAYER ADD, SCENARIOS A/B/C, CSV IMPORT & PRINT REPORT
+        // ============================================================
+        function openAddRumorModal() {
+            document.getElementById('addRumorModal').classList.remove('hidden');
+            document.getElementById('addRumorModal').classList.add('flex');
+        }
+
+        function closeAddRumorModal() {
+            document.getElementById('addRumorModal').classList.add('hidden');
+            document.getElementById('addRumorModal').classList.remove('flex');
+        }
+
+        async function handleAddRumor(e) {
+            e.preventDefault();
+            const name = document.getElementById('rumorName').value.trim();
+            const pos = document.getElementById('rumorPos').value;
+            const age = parseInt(document.getElementById('rumorAge').value) || 28;
+            const cost = parseFloat(document.getElementById('rumorCost').value) || 0;
+            const salario = parseInt(document.getElementById('rumorSalary').value) || 600;
+            const anosContrato = parseInt(document.getElementById('rumorYears').value) || 3;
+            const contract = document.getElementById('rumorContract').value;
+            const ovr = parseInt(document.getElementById('rumorOvr').value) || 82;
+            const note = document.getElementById('rumorNote').value.trim() || 'Alvo cadastrado manualmente pela diretoria.';
+            const isStar = contract.includes('Loucura');
+
+            const newPlayer = {
+                id: 'rumor_' + Date.now(),
+                name,
+                pos,
+                age,
+                club: 'Mercado Internacional',
+                contract,
+                cost,
+                anosContrato,
+                salario,
+                mktAnnual: isStar ? Math.round(cost * 0.5) : 2,
+                ovr,
+                pac: Math.min(92, ovr - 2),
+                phy: Math.min(92, ovr),
+                grinta: isStar ? 94 : 90,
+                identidade: 85,
+                decisao: isStar ? 92 : 84,
+                disponibilidade: 88,
+                isStar,
+                note,
+                signed: false
+            };
+
+            if (isStar || cost >= 45) {
+                worldEliteTargets.unshift(newPlayer);
+                switchLeftTab('world');
+            } else {
+                marketTargets.unshift(newPlayer);
+                switchLeftTab('market');
+            }
+
+            closeAddRumorModal();
+            e.target.reset();
+            refreshAll();
+            showToast(`${name} adicionado ao radar!`);
+
+            const url = await fetchRealPhotoForPlayer(name);
+            if (url) refreshAll();
+        }
+
+        function evaluateScenarioSummary(sc) {
+            const barcaRev = initialOutgoing.filter(o => sc.soldIds.includes(o.id)).reduce((a, b) => a + b.fee, 0);
+            const totalSales = barcaRev + (sc.vitaoSold ? 45 : 0);
+            const pool = [...initialMarket, ...initialWorldElite];
+            const signed = pool.filter(m => sc.signedIds.includes(m.id));
+            const spend = signed.reduce((a, b) => a + b.cost, 0);
+            const cash = sc.budget + totalSales - spend;
+            const mktYear = signed.reduce((a, b) => a + (b.mktAnnual || 0), 0);
+
+            const keptOut = initialOutgoing.filter(o => !sc.soldIds.includes(o.id));
+            const baseRet = initialRetained.filter(r => !(r.isVitao && sc.vitaoSold));
+            const monthlySal = [...baseRet, ...keptOut, ...signed].reduce((a, b) => a + (b.salario || 400), 0);
+            const payrollYear = 75 + (monthlySal * 13.3) / 1000 + signed.reduce((a, b) => a + (b.cost / (b.anosContrato || 3)), 0);
+            const fp = (payrollYear / (768 + totalSales + mktYear)) * 100;
+
+            return { cash, spend, totalSales, mktYear, fp, signedNames: signed.map(s => s.name) };
+        }
+
+        function openScenariosModal() {
+            const grid = document.getElementById('scenariosGrid');
+            grid.innerHTML = ['A', 'B', 'C'].map(key => {
+                const sc = savedScenarios[key];
+                const sum = evaluateScenarioSummary(sc);
+                return `
+                <div class="bg-galo-card border border-galo-border rounded-xl p-4 flex flex-col justify-between space-y-3">
+                    <div>
+                        <div class="flex items-center justify-between mb-1">
+                            <span class="font-display text-sm font-bold text-galo-gold uppercase">${esc(sc.name)}</span>
+                            <span class="text-[10px] px-2 py-0.5 rounded ${sum.fp <= 70 ? 'bg-emerald-500/20 text-emerald-300' : 'bg-red-500/20 text-red-300'} font-bold">FP ${sum.fp.toFixed(1)}%</span>
+                        </div>
+                        <p class="text-slate-300 text-[11px] mb-3">${esc(sc.desc)}</p>
+                        <div class="space-y-1 bg-black/60 p-2.5 rounded-lg border border-galo-border text-[11px]">
+                            <div class="flex justify-between"><span>Saldo Caixa:</span><strong class="${sum.cash >= 0 ? 'text-galo-gold' : 'text-red-400'}">${formatBRL(sum.cash)}</strong></div>
+                            <div class="flex justify-between"><span>Investimento:</span><strong class="text-white">${formatBRL(sum.spend)}</strong></div>
+                            <div class="flex justify-between"><span>Mkt Anual:</span><strong class="text-emerald-400">+${formatBRL(sum.mktYear)}</strong></div>
+                            <div class="pt-1 border-t border-galo-border/60 text-slate-300">
+                                <strong>Reforços:</strong> ${sum.signedNames.length ? esc(sum.signedNames.join(', ')) : 'Nenhum'}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="grid grid-cols-2 gap-2 pt-2">
+                        <button onclick="loadScenario('${key}')" class="py-1.5 rounded-lg bg-galo-gold text-black font-bold">Aplicar Cenário</button>
+                        <button onclick="saveCurrentToScenario('${key}')" class="py-1.5 rounded-lg bg-neutral-800 hover:bg-neutral-700 text-white font-semibold border border-galo-border">Salvar Atual</button>
+                    </div>
+                </div>`;
+            }).join('');
+
+            document.getElementById('scenariosModal').classList.remove('hidden');
+            document.getElementById('scenariosModal').classList.add('flex');
+        }
+
+        function closeScenariosModal() {
+            document.getElementById('scenariosModal').classList.add('hidden');
+            document.getElementById('scenariosModal').classList.remove('flex');
+        }
+
+        function saveCurrentToScenario(key) {
+            const currentName = savedScenarios[key].name;
+            savedScenarios[key] = {
+                name: currentName,
+                desc: 'Cenário personalizado salvo durante a sessão executiva.',
+                budget: parseFloat(document.getElementById('baseBudgetInput').value) || 55,
+                vitaoSold,
+                soldIds: outgoingList.filter(o => o.sold).map(o => o.id),
+                signedIds: getAllMarketPool().filter(m => m.signed).map(m => m.id),
+                formation: currentFormation
+            };
+            showToast(`Estado atual salvo no ${currentName}!`);
+            openScenariosModal();
+        }
+
+        function loadScenario(key) {
+            const sc = savedScenarios[key];
+            if (!sc) return;
+            document.getElementById('baseBudgetInput').value = sc.budget;
+            vitaoSold = sc.vitaoSold;
+            const btn = document.getElementById('vitaoActionBtn');
+            btn.textContent = vitaoSold ? 'Desfazer Venda' : 'Vender (+45M)';
+            btn.className = vitaoSold
+                ? 'px-2.5 py-1.5 rounded-lg text-xs font-bold bg-neutral-700 text-white shrink-0'
+                : 'px-2.5 py-1.5 rounded-lg text-xs font-bold bg-purple-600 hover:bg-purple-500 text-white shrink-0';
+
+            outgoingList.forEach(o => o.sold = sc.soldIds.includes(o.id));
+            getAllMarketPool().forEach(m => m.signed = sc.signedIds.includes(m.id));
+            currentFormation = sc.formation || '4-2-3-1';
+            document.getElementById('formationSelect').value = currentFormation;
+
+            lineups = JSON.parse(JSON.stringify(formations));
+            autoBestXI();
+            closeScenariosModal();
+            refreshAll();
+            showToast(`${sc.name} aplicado!`);
+        }
+
+        function openCsvModal() {
+            document.getElementById('csvModal').classList.remove('hidden');
+            document.getElementById('csvModal').classList.add('flex');
+        }
+
+        function closeCsvModal() {
+            document.getElementById('csvModal').classList.add('hidden');
+            document.getElementById('csvModal').classList.remove('flex');
+        }
+
+        function importCsvStats() {
+            const raw = document.getElementById('csvInputArea').value.trim();
+            if (!raw) return;
+            let count = 0;
+            raw.split('\n').forEach(line => {
+                const parts = line.split(',').map(s => s.trim());
+                if (parts.length >= 5 && parts[0]) {
+                    customCsvStats[parts[0].toLowerCase()] = {
+                        games: parseInt(parts[1]) || 30,
+                        goals: parseInt(parts[2]) || 0,
+                        assists: parseInt(parts[3]) || 0,
+                        rating: parseFloat(parts[4]) || 7.0,
+                        mins: parseInt(parts[5]) || ((parseInt(parts[1]) || 30) * 80)
+                    };
+                    count++;
+                }
+            });
+            closeCsvModal();
+            showToast(`${count} registros reais importados via CSV!`);
+        }
+
+        function downloadFile(filename, content, mime) {
+            const blob = new Blob([content], { type: mime });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = filename;
+            a.click();
+            URL.revokeObjectURL(url);
+        }
+
+        function exportPlanJSON() {
+            const fm = getFinancialMetrics();
+            const payload = {
+                clube: 'Clube Atlético Mineiro',
+                temporada: 2027,
+                financeiro: fm,
+                vendasExecutadas: outgoingList.filter(o => o.sold),
+                vitaoVendido: vitaoSold,
+                contratacoes: fm.signedList,
+                escalacaoTitular: lineups[currentFormation]
+            };
+            downloadFile('galo-bi-2027.json', JSON.stringify(payload, null, 2), 'application/json');
+        }
+
+        function exportPlanCSV() {
+            const rows = [['Categoria', 'Nome', 'Posicao', 'Idade', 'OVR', 'DNAScore', 'Valor_M', 'Salario_k_mes']];
+            getActiveSquad().forEach(p => {
+                rows.push([p.isNew ? 'Reforco' : 'ElencoAtivo', p.name, p.pos, p.age, p.ovr, computeDnaScore(p), p.cost || p.valorMercado || 0, p.salario || 0]);
+            });
+            outgoingList.filter(o => o.sold).forEach(o => {
+                rows.push(['Vendido_Emprestado', o.name, o.pos, o.age, o.ovr, o.grinta, o.fee, o.salario]);
+            });
+            const csv = rows.map(r => r.join(',')).join('\n');
+            downloadFile('galo-bi-2027.csv', csv, 'text/csv;charset=utf-8;');
+        }
+
+        function printExecutiveReport() {
+            const fm = getFinancialMetrics();
+            const active = getActiveSquad();
+            const starters = lineups[currentFormation].map(s => {
+                const p = active.find(x => x.id === s.playerId);
+                return `${s.label}: ${p ? p.name + ' (OVR ' + p.ovr + ' | DNA ' + computeDnaScore(p) + ')' : 'Vago'}`;
+            });
+
+            const rep = document.getElementById('printReportContainer');
+            rep.innerHTML = `
+                <div style="border-bottom:4px solid #000; padding-bottom:12px; margin-bottom:16px; display:flex; justify-content:space-between; align-items:center;">
+                    <div>
+                        <h1 style="font-size:22px; font-weight:800; margin:0;">CLUBE ATLÉTICO MINEIRO • RELATÓRIO EXECUTIVO SAF 2027</h1>
+                        <p style="font-size:12px; color:#444; margin:4px 0 0;">Planejamento de Elenco, Fair Play Financeiro & Matriz de Contratações</p>
+                    </div>
+                    <div style="text-align:right; font-size:12px;">
+                        <strong>Esquema:</strong> ${esc(currentFormation)}<br>
+                        <strong>Fair Play CBF:</strong> ${fm.fairPlayPct.toFixed(1)}% (Limite 70%)
+                    </div>
+                </div>
+                <div style="display:grid; grid-template-columns:repeat(4,1fr); gap:10px; margin-bottom:18px; font-size:12px;">
+                    <div style="border:1px solid #ccc; padding:8px;"><strong>Caixa Inicial</strong><br>${formatBRL(fm.baseCash)}</div>
+                    <div style="border:1px solid #ccc; padding:8px;"><strong>Receita Vendas</strong><br>+${formatBRL(fm.totalSales)}</div>
+                    <div style="border:1px solid #ccc; padding:8px;"><strong>Investimento Compras</strong><br>-${formatBRL(fm.acquisitionSpend)}</div>
+                    <div style="border:1px solid #ccc; padding:8px;"><strong>Saldo Caixa Líquido</strong><br>${formatBRL(fm.cashBalance)}</div>
+                </div>
+                <h2 style="font-size:14px; font-weight:700; border-bottom:1px solid #000; padding-bottom:4px;">1. Contratações Aprovadas (${fm.signedList.length})</h2>
+                <ul style="font-size:12px; margin-bottom:16px;">
+                    ${fm.signedList.map(m => `<li><strong>${esc(m.name)}</strong> (${esc(m.pos)}, ${m.age}a) — Custo: ${formatBRL(m.cost)} | Salário: R$ ${m.salario}k/mês | DNA Score: ${computeDnaScore(m)}</li>`).join('') || '<li>Nenhuma contratação selecionada.</li>'}
+                </ul>
+                <h2 style="font-size:14px; font-weight:700; border-bottom:1px solid #000; padding-bottom:4px;">2. Saídas / Barca Executada</h2>
+                <p style="font-size:12px; margin-bottom:16px;">
+                    ${outgoingList.filter(o => o.sold).map(o => `${esc(o.name)} (+${formatBRL(o.fee)})`).join(' • ') || 'Nenhuma saída executada'} ${vitaoSold ? ' • Vitão (+R$ 45,0M)' : ''}
+                </p>
+                <h2 style="font-size:14px; font-weight:700; border-bottom:1px solid #000; padding-bottom:4px;">3. Escalação Titular Projetada (${esc(currentFormation)})</h2>
+                <div style="display:grid; grid-template-columns:repeat(2,1fr); gap:6px; font-size:12px;">
+                    ${starters.map(st => `<div>• ${esc(st)}</div>`).join('')}
+                </div>
+            `;
+            window.print();
+        }
+
+        function resetAll() {
+            retainedSquad = JSON.parse(JSON.stringify(initialRetained));
+            outgoingList = JSON.parse(JSON.stringify(initialOutgoing));
+            marketTargets = JSON.parse(JSON.stringify(initialMarket));
+            worldEliteTargets = JSON.parse(JSON.stringify(initialWorldElite));
+            vitaoSold = false;
+            document.getElementById('vitaoActionBtn').textContent = 'Vender (+45M)';
+            document.getElementById('vitaoActionBtn').className = 'px-2.5 py-1.5 rounded-lg text-xs font-bold bg-purple-600 hover:bg-purple-500 text-white shrink-0';
+            document.getElementById('baseBudgetInput').value = 55;
+            lineups = JSON.parse(JSON.stringify(formations));
+            showToast('Painel resetado para o estado inicial.');
+            refreshAll();
+        }
+
+        // Escape Key closes any open modal
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                closePickerModal();
+                closeAddRumorModal();
+                closeDetailsModal();
+                closeScenariosModal();
+                closeCsvModal();
+            }
+        });
+
+        // Position Filter Buttons
+        document.querySelectorAll('.pos-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                document.querySelectorAll('.pos-btn').forEach(b => {
+                    b.classList.remove('bg-galo-gold', 'text-black', 'font-bold');
+                    b.classList.add('text-slate-300', 'font-semibold');
+                });
+                btn.classList.add('bg-galo-gold', 'text-black', 'font-bold');
+                btn.classList.remove('text-slate-300', 'font-semibold');
+                currentPosFilter = btn.dataset.pos;
+                renderLeftColumn();
+            });
+        });
+
+        document.getElementById('baseBudgetInput').addEventListener('input', () => {
+            updateFinancials();
+            if (!document.getElementById('workspaceBi').classList.contains('hidden')) renderBiAnalytics();
+        });
+
+        function refreshAll() {
+            updateFinancials();
+            renderLeftColumn();
+            renderEAFCPitch();
+            if (!document.getElementById('workspaceBi').classList.contains('hidden')) {
+                renderBiAnalytics();
+            }
+        }
+
+        window.onload = () => {
+            renderClubFacts();
+            refreshAll();
+            syncPhotosWithQueue();
+        };
+    </script>
+</body>
+</html>
